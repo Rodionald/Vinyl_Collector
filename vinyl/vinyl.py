@@ -40,6 +40,14 @@ def get_js(vinyl_id) -> str:
     return js
 
 
+def get_vinyl_id(js):
+    try:
+        vinyl_id = js["id"]
+    except KeyError:
+        vinyl_id = 'Wrong vendor code'
+    return vinyl_id
+
+
 def get_url(js) -> str:
     try:
         url = js['uri']
@@ -189,7 +197,7 @@ def get_cat_num(js) -> str:
 
 def get_vinyl_dict(js) -> dict:
     vinyl = {
-        'url': get_url(js),
+        'id': get_vinyl_id(js),
         'artist': get_artist(js),
         'album': get_album(js),
         'genres': get_genres(js),
