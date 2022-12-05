@@ -5,6 +5,5 @@ from vinylcollector.urls import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', hello_world()),
-    path('vinyl', include('vinylcollector.urls'))
+    path('', include('vinylcollector.urls'))
 ]

@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <title>Vinyl detail</title>
 </head>
+<h1 align="center"><strong>Searching vinyl details</strong></h1>
 <body>
-  <div style="margin: 30px">
-        <div style="border: 1px">
-            <div>{{ vinyl.title }}</div>
-            <div>{{ vinyl.text }}</div>
-            <div>{{ vinyl.created_date }}</div>
-            <div>{{ vinyl.image }}</div>
-        </div>
-  </div>
+<div>
+    <div align="center">
+        <img src="{{context.image}}" alt={{context.album}} style="width:300px;height:300px;">
+    </div>
+    <div align="center">
+        <p>Artist:</p>
+        <p><strong>{{ context.artist }}</strong></p>
+        <p>Album</p>
+        <p><strong>{{ context.album }}</strong></p>
+        <p>year:</p>
+        <p><strong>{{ context.year }}</strong></p>
+        <p>Lowest price of LP, USD</p>
+        <p><strong>{{ context.lowest_price }}</strong></p>
+    </div>
+</div>
 </body>
 </html>
