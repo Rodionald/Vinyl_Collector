@@ -2,18 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Search Vinyl</title>
-</head>
-<body>
-<h2>Search Vinyl</h2>
-<p><strong>NOTICE! For Russian LP, vendor code types in Russian language!!!</strong>
-    <br>Get the Info about searching LP, such as Artist, Album, Country, Year, Average price of this LP, etc.
-    <br>Input vendor code of LP you have.</p>
+    <title>Vinyl search</title>
+    <style>
+        body {
+            background-image: url('https://www.seekpng.com/png/full/159-1599645_starting-\
+            conversations-light-grey-background-powerpoint.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
 
-<form action="/vinyl_search">
-    <label for="vendor_code">Search LP:</label>
-    <input type="search" id="vendor_code" name="vendor_code">
-    <input type="submit" value="Search">
-</form>
+        .text_content {
+            font: 20px Arial, sans-serif;
+            text-shadow: white 1px 1px 1px, white -1px -1px 1px,
+            white -1px 1px 1px, white 1px -1px 1px;
+        }
+    </style>
+</head>
+<h1 class=text_content align="center"><strong>SEARCH VINYL</strong></h1>
+<body>
+<div class="text_content" align="center">
+    <p><strong>NOTICE! For Russian LP, vendor code types in Russian language!!!</strong>
+        <br>Get the Info about searching LP, such as Artist, Album, Country, Year, Average price of this LP, etc.
+        <br>Input vendor code of LP you have.</p>
+    <form class="text_content" action="search/vendor_code">
+        <label for="vendor_code"></label>
+        <input type="text" id="vendor_code" name="vendor_code">
+        <input type="submit" value="Search">
+</div>
 </body>
 </html>
