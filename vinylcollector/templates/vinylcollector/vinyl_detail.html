@@ -3,22 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Vinyl detail</title>
+    <style>
+        body {
+            background-image: url('https://www.seekpng.com/png/full/159-1599645_starting-\
+            conversations-light-grey-background-powerpoint.png');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        .text_content {
+            font: 20px Arial, sans-serif;
+            text-shadow: white 1px 1px 1px, white -1px -1px 1px,
+            white -1px 1px 1px, white 1px -1px 1px;
+        }
+    </style>
 </head>
-<h1 align="center"><strong>Searching vinyl details</strong></h1>
+<h1 class=text_content align="middle"><strong>SEARCHING VINYL DETAILS</strong></h1>
 <body>
-<div>
-    <div align="center">
-        <img src="{{context.image}}" alt={{context.album}} style="width:300px;height:300px;">
-    </div>
-    <div align="center">
-        <p>Artist:</p>
-        <p><strong>{{ context.artist }}</strong></p>
-        <p>Album</p>
-        <p><strong>{{ context.album }}</strong></p>
-        <p>year:</p>
-        <p><strong>{{ context.year }}</strong></p>
-        <p>Lowest price of LP, USD</p>
-        <p><strong>{{ context.lowest_price }}</strong></p>
+
+<div align="middle">
+    <img src="{{context.image}}" alt={{context.album}} style="width:500px;height:500px;"/>
+    <div class=text_content align="middle">
+        <br>
+        Artist: <strong>{{ context.artist }}</strong>
+        Album: <strong>{{ context.album }}</strong><br>
+        Genres: <strong>{{ context.genres }}</strong>
+        Styles: <strong>{{ context.styles }}</strong><br>
+        Formats, quantity: <strong>{{ context.formats }} {{ context.qty }}</strong>
+        Label: <strong>{{ context.label }}</strong>
+        Catalogue number: <strong>{{ context.catalogue_number }}</strong>
+        Manufacture region: <strong>{{ context.manufacture_region }}</strong>
+        Year: <strong>{{ context.year }}</strong><br>
+        Notes: <strong>{{ context.notes }}</strong>
+        Average rating: <strong>{{ context.average_rating }}</strong><br>
+        Number of owners: <strong>{{ context.owners }}</strong>
+        Number of sellers: <strong>{{ context.sell }}</strong>
+        Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong>
     </div>
 </div>
 </body>
