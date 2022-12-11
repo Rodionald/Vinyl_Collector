@@ -41,30 +41,37 @@ class Vinyl:
         url = self.js.get('uri', 'not specified')
         return url
 
+    @property
     def artist(self) -> str:
         artist = self.js.get('artists_sort', 'not specified')
         return artist
 
+    @property
     def album(self) -> str:
         album = self.js.get('title', 'not specified')
         return album
 
+    @property
     def genres(self) -> str:
         genres = ''.join(self.js.get('genres', 'not specified'))
         return genres
 
+    @property
     def styles(self) -> str:
         styles = ''.join(self.js.get('styles', 'not specified'))
         return styles
 
+    @property
     def country(self) -> str:
         country = self.js.get('country', 'not specified')
         return country
 
+    @property
     def year(self) -> int:
         year = self.js.get('year', 'not specified')
         return year
 
+    @property
     def average_rating(self) -> float:
         try:
             rating = self.js['community']['rating']['average']
@@ -72,22 +79,27 @@ class Vinyl:
             rating = 0.0
         return rating
 
+    @property
     def owners_number(self) -> int:
         owners = self.js.get('community', {'have': 0}).get('have', 0)
         return owners
 
+    @property
     def sell_number(self) -> int:
         sell = self.js.get('num_for_sale', 0)
         return sell
 
+    @property
     def lowest_price(self) -> float:
         lowest_price = self.js.get('lowest_price', 0.0)
         return lowest_price
 
+    @property
     def notes(self) -> str:
         notes = self.js.get('notes', 'not specified').replace('\n', ' ')
         return notes
 
+    @property
     def formats(self):
         try:
             formats = self.js.get('formats')[0].get('name', 'not specified')
@@ -95,6 +107,7 @@ class Vinyl:
             formats = 'not specified'
         return formats
 
+    @property
     def qty(self) -> str:
         try:
             qty = self.js.get('formats')[0].get('qty', 'not specified')
@@ -102,6 +115,7 @@ class Vinyl:
             qty = 'not specified'
         return qty
 
+    @property
     def image_url(self) -> str:
         try:
             url = f'https://www.discogs.com/release/{self.release}'
@@ -118,6 +132,7 @@ class Vinyl:
             image_url = 'https://cdn-icons-png.flaticon.com/512/6134/6134065.png'
         return image_url
 
+    @property
     def label(self) -> str:
         try:
             label = self.js.get('labels')[0].get('name', 'not specified')
@@ -125,6 +140,7 @@ class Vinyl:
             label = 'not specified'
         return label
 
+    @property
     def cat_num(self) -> str:
         try:
             cat_num = self.js.get('labels')[0].get('catno', 'not specified')
@@ -135,21 +151,21 @@ class Vinyl:
     def dict(self) -> dict:
         vinyl = {
             'release': self.release,
-            'artist': self.artist(),
-            'album': self.album(),
-            'genres': self.genres(),
-            'styles': self.styles(),
-            'notes': self.notes(),
-            'formats': self.formats(),
-            'qty': self.qty(),
-            'manufacture_region': self.country(),
-            'label': self.label(),
-            'catalogue_number': self.cat_num(),
-            'year': self.year(),
-            'average_rating': self.average_rating(),
-            'owners': self.owners_number(),
-            'sell': self.sell_number(),
-            'lowest_price': self.lowest_price(),
-            'image': self.image_url(),
+            'artist': self.artist,
+            'album': self.album,
+            'genres': self.genres,
+            'styles': self.styles,
+            'notes': self.notes,
+            'formats': self.formats,
+            'qty': self.qty,
+            'manufacture_region': self.country,
+            'label': self.label,
+            'catalogue_number': self.cat_num,
+            'year': self.year,
+            'average_rating': self.average_rating,
+            'owners': self.owners_number,
+            'sell': self.sell_number,
+            'lowest_price': self.lowest_price,
+            'image': self.image_url,
         }
         return vinyl
