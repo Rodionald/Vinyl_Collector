@@ -7,15 +7,15 @@ NOTICE! For Russian LP, vendor code types in Russian language!!!
 Get the Info about searching LP, such as Artist, Album, Country, Year, Average price of this LP, etc'''
 
 
-class Vinyl:
-    def __init__(self, vendor_code: str):
-        self.vendor_code = vendor_code.replace(' ', '')
-        self.release = self.release()
-        self.js = self.js()
+class DiscogsSite:
 
-    def release(self) -> str:
+    def __init__(self, request: str):
+        self.request = request.replace(' ', '')
+        self.search_type = 'all'
+
+    def get_release(self) -> int:
         try:
-            url = f'https://www.discogs.com/search?q={self.vendor_code}&type=all'
+            url = f'https://www.discogs.com/search?q={self.request}&type={self.search_type}'
             headers = {
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
                           '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -23,86 +23,98 @@ class Vinyl:
                               'Chrome/107.0.0.0 Safari/537.36 ',
             }
             response = requests.get(url, headers=headers).text
-            vinyl_release = re.findall(r'<a.+?href="/release/(.+?)-.+?"', response)[1]
+            release = re.findall(r'<a.+?href="/release/(.+?)-.+?"', response)[1]
         except IndexError:
-            vinyl_release = 'Wrong vendor code'
-        return vinyl_release
+            release = 'Wrong vendor code'
+        return release
 
-    def js(self):
+
+class SearchingData:
+    def __init__(self, release: int | None):
+        self.release = release
+        self.json_data = None
+
+    def get_json_data(self) -> dict:
         try:
-            js_url = f'https://api.discogs.com/releases/{self.release}'
-            data = requests.get(js_url)
-            self.js = json.loads(data.content.decode())
+            url = f'https://api.discogs.com/releases/{self.release}'
+            data = requests.get(url)
+            self.json_data = json.loads(data.content.decode())
         except TypeError:
-            self.js = 'Wrong vendor code'
-        return self.js
+            self.json_data = 'Wrong vendor code'
+        return self.json_data
 
-    def url(self):
-        url = self.js.get('uri', 'not specified')
-        return url
+
+class Vinyl:
+    def __init__(self, json_data: dict | None):
+        self.json_data = json_data
+
+    @property
+    def release(self) -> str:
+        release = self.json_data.get('id', 'not specified')
+        return release
 
     @property
     def artist(self) -> str:
-        artist = self.js.get('artists_sort', 'not specified')
+        artist = self.json_data.get('artists_sort', 'not specified')
         return artist
 
     @property
     def album(self) -> str:
-        album = self.js.get('title', 'not specified')
+        album = self.json_data.get('title', 'not specified')
         return album
 
     @property
     def genres(self) -> str:
-        genres = ''.join(self.js.get('genres', 'not specified'))
+        genres = ''.join(self.json_data.get('genres', 'not specified'))
         return genres
 
     @property
     def styles(self) -> str:
-        styles = ''.join(self.js.get('styles', 'not specified'))
+        styles = ''.join(self.json_data.get('styles', 'not specified'))
         return styles
 
     @property
     def country(self) -> str:
-        country = self.js.get('country', 'not specified')
+        country = self.json_data.get('country', 'not specified')
         return country
 
     @property
     def year(self) -> int:
-        year = self.js.get('year', 'not specified')
+        year = self.json_data.get('year', 'not specified')
         return year
 
     @property
     def average_rating(self) -> float:
         try:
-            rating = self.js['community']['rating']['average']
+            rating = self.json_data['community']['rating']['average']
         except KeyError:
             rating = 0.0
         return rating
 
     @property
     def owners_number(self) -> int:
-        owners = self.js.get('community', {'have': 0}).get('have', 0)
+        owners = self.json_data.get('community', {'have': 0}).get('have', 0)
         return owners
 
     @property
     def sell_number(self) -> int:
-        sell = self.js.get('num_for_sale', 0)
+        sell = self.json_data.get('num_for_sale', 0)
         return sell
 
     @property
     def lowest_price(self) -> float:
-        lowest_price = self.js.get('lowest_price', 0.0)
+        lowest_price = self.json_data.get('lowest_price', 0.0)
         return lowest_price
 
     @property
     def notes(self) -> str:
-        notes = self.js.get('notes', 'not specified').replace('\n', ' ')
+        notes = self.json_data.get('notes', 'not specified').replace('\n', ' ')
         return notes
 
     @property
     def formats(self):
         try:
-            formats = self.js.get('formats')[0].get('name', 'not specified')
+            formats = self.json_data.get('formats')[0].get('name', 'not specified')
         except TypeError:
             formats = 'not specified'
         return formats
@@ -110,7 +122,7 @@ class Vinyl:
     @property
     def qty(self) -> str:
         try:
-            qty = self.js.get('formats')[0].get('qty', 'not specified')
+            qty = self.json_data.get('formats')[0].get('qty', 'not specified')
         except TypeError:
             qty = 'not specified'
         return qty
@@ -135,7 +147,7 @@ class Vinyl:
     @property
     def label(self) -> str:
         try:
-            label = self.js.get('labels')[0].get('name', 'not specified')
+            label = self.json_data.get('labels')[0].get('name', 'not specified')
         except TypeError:
             label = 'not specified'
         return label
@@ -143,11 +155,12 @@ class Vinyl:
     @property
     def cat_num(self) -> str:
         try:
-            cat_num = self.js.get('labels')[0].get('catno', 'not specified')
+            cat_num = self.json_data.get('labels')[0].get('catno', 'not specified')
         except TypeError:
             cat_num = 'not specified'
         return cat_num
 
+    @property
     def dict(self) -> dict:
         vinyl = {
             'release': self.release,

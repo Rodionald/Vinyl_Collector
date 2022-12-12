@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Vinyl collector</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>VINYL COLLECTOR</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="margin-left: 143px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="">Search &amp; Add Vinyl</a></li>
+                    <li class="nav-item"><a class="nav-link" href="" style="margin-right: -167px;">My collection</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul><a class="btn btn-primary shadow" role="button" href="">Sign up</a>
+            </div>
+        </div>
+    </nav>
+    <header class="pt-5">
+        <div class="container pt-4 pt-xl-5">
+            <div class="row pt-5">
+                <div class="col-md-8 text-center text-md-start mx-auto">
+                    <div class="text-center">
+                        <h1 class="display-4 fw-bold mb-5">Make YOUR vinyl collection info&nbsp;<span class="underline">nice</span>.</h1>
+                        <p class="fs-5 text-muted mb-5"><span style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);">NOTICE! For Russian LP, vendor code types in Russian language!!!</span><br><span style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);">Get the Info about searching LP, such as Artist, Album, Country, Year, Average price of this LP, etc</span></p>
+                        <form class="d-flex justify-content-center flex-wrap" method="post" >
+                            <div class="shadow-lg mb-3"><label>
+                                <input class="form-control" type="text" id="vendor_code" name="vendor_code" placeholder="input vendor code">
+                            </label></div>
+                            <div class="shadow-lg mb-3"><button class="btn btn-primary" type="submit">SEARCH</button></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-10 mx-auto">
+                    <div class="text-center position-relative"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section></section>
+    <section></section>
+    <footer></footer>
+</body>
+
+</html>
