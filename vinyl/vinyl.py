@@ -182,3 +182,4 @@ class Vinyl:
             'image': self.image_url,
         }
         return vinyl
+

@@ -12,3 +12,4 @@ if __name__ == '__main__':
     vinyl = Vinyl(json_data)
     vinyl_info = vinyl.dict
     print(vinyl_info)
+
