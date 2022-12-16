@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Vinyl detail</title>
-    <style>
-        body {
-            background-image: url('https://www.seekpng.com/png/full/159-1599645_starting-\
-            conversations-light-grey-background-powerpoint.png');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: 100% 100%;
-        }
-
-        .text_content {
-            font: 20px Arial, sans-serif;
-            text-shadow: white 1px 1px 1px, white -1px -1px 1px,
-            white -1px 1px 1px, white 1px -1px 1px;
-        }
-    </style>
-</head>
-<h1 class=text_content align="middle"><strong>SEARCHING VINYL DETAILS</strong></h1>
-<body>
-
+{% extends 'vinylcollector/base_template.html' %}
+{% block content %}
 <div align="middle">
     <img src="{{context.image}}" alt={{context.album}} style="width:500px;height:500px;"/>
     <div class=text_content align="middle">
@@ -42,5 +20,4 @@
         Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong>
     </div>
 </div>
-</body>
-</html>
+{% endblock %}

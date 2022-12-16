@@ -1,8 +1,11 @@
-from django.urls import path
+from django.urls import path, include
+from django.contrib.auth.urls import *
 from vinylcollector.views import *
 
 urlpatterns = [
-    path('', VinylView.vinyl_search, name='main'),
-    path('search/vendor_code', VinylView.vinyl_detail, name='search_vinyl'),
-    path('search', VinylView.vinyl_search, name='search'),
+    path('', MainPage.as_view(), name='main'),
+    path('search', Search.as_view(), name='search'),
+    path('search/', VinylView.as_view(), name='vinyl_details'),
+    path('add', VinylAddView.as_view(), name='vinyl_add'),
+    path('', include('django.contrib.auth.urls')),
 ]
