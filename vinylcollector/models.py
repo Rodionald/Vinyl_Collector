@@ -24,3 +24,7 @@ class Vinyl(models.Model):
 
     def __str__(self):
         return f'{self.catalogue_number}'
+
+
+class UserModel(User):
+    avatar = models.ImageField(width_field=100, height_field=100, verbose_name='Avatar')

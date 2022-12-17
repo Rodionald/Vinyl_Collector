@@ -7,5 +7,5 @@ urlpatterns = [
     path('search', Search.as_view(), name='search'),
     path('search/', VinylView.as_view(), name='vinyl_details'),
     path('add', VinylAddView.as_view(), name='vinyl_add'),
-    path('', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

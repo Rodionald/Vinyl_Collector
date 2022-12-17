@@ -8,26 +8,29 @@ from vinylcollector.forms import VinylForm
 
 class MainPage(View):
 
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request, *args, **kwargs):
         return render(request, 'vinylcollector/main.html')
 
 
 class Search(View):
 
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request, *args, **kwargs):
+        vendor_code = request.GET.get('vendor_code')
+        if vendor_code:
+            vinyl = VinylView.get(request)
+            return vinyl
         return render(request, 'vinylcollector/search_vinyl.html')
 
     def post(self, request, *args, **kwargs):
-        vendor_code = request.GET.get('vendor_code')
-        if vendor_code:
-            view = VinylView.get(request)
-            return view
-        return render(request, 'vinylcollector/search_vinyl.html')
+        pass
 
 
 class VinylView(View):
 
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request, *args, **kwargs):
         vendor_code = request.GET.get('vendor_code')
         discogs_search = DiscogsSite(vendor_code)
         release = discogs_search.get_release()
@@ -40,10 +43,12 @@ class VinylView(View):
 
 class VinylAddView(View):
 
-    def get(self, request, *args, **kwargs):
+    @staticmethod
+    def get(request, *args, **kwargs):
         return render(request, 'vinylcollector/add_vinyl.html')
 
-    def post(self, request, *args, **kwargs):
+    @staticmethod
+    def post(request, *args, **kwargs):
         form = VinylForm
         context = {
             'form': form
@@ -53,4 +58,3 @@ class VinylAddView(View):
 
 class UserLogin(LoginRequiredMixin, View):
     login_url = '/login/'
-    redirect_field_name = 'redirect_to'
