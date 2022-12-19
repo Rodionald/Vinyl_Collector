@@ -22,7 +22,10 @@
     </div>
     {% if user.is_authenticated %}
     <br>
-    <a class="btn btn-primary shadow" role="button" href="">ADD TO COLLECTION</a>
+    <form method="post">
+        {% csrf_token %}
+    <button class="btn btn-primary shadow" type="submit">ADD TO COLLECTION</button>
+    </form>
     {% endif %}
 </div>
 {% endblock %}

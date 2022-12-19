@@ -9,7 +9,7 @@ if __name__ == '__main__':
     release = search.get_release()
     searching_data = SearchingData(release)
     json_data = SearchingData.get_json_data(searching_data)
-    vinyl = Vinyl(json_data)
+    vinyl = Vinyl_Lp(json_data)
     vinyl_info = vinyl.dict
     print(vinyl_info)
 

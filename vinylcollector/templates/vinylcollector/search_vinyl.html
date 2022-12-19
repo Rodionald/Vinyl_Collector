@@ -5,8 +5,8 @@
                     <div class="text-center">
                         <h1 class="display-4 fw-bold mb-5">Let's search the info about yours&nbsp;<span class="underline">LP</span>.</h1>
                         <p class="fs-5 text-muted mb-5"><span
-                                style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);">Type the vendor code of your LP.<br>NOTICE! For Russian LP, vendor code types in Russian language!!!</span><br><span
-                                style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);"></span></p>
+                                style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);">Type the vendor code of your LP.<br>NOTICE! For Russian LP, vendor code types in Russian language!!!</span><br><span
+                                style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);"></span></p>
                         <form class="d-flex justify-content-center flex-wrap" method="get">
                             {% csrf_token %}
                             <div class="shadow-lg mb-3">
@@ -19,7 +19,7 @@
                             </div>
                             {% if user.is_authenticated %}
                         </form>
-                            <h2 class="display-4 fw-bold mb-5">Or You can add vinyl&nbsp;<span class="underline">Manually</span>.
+                            <h2 class="fs-5 text-muted mb-5"><span style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);">Or You can add vinyl&nbsp; Manually</span>.
                             </h2>
                             <a class="btn btn-primary shadow" role="button" href="/add">Add manually</a>
                         {% endif %}

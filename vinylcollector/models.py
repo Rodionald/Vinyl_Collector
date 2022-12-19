@@ -16,11 +16,12 @@ class Vinyl(models.Model):
     catalogue_number = models.CharField(max_length=80, verbose_name='Catalogue number')
     year = models.CharField(max_length=80, verbose_name='Year')
     average_rating = models.CharField(max_length=80, verbose_name='Average rating')
-    owners = models.CharField(max_length=80, verbose_name='Owners')
-    sell = models.CharField(max_length=80, verbose_name='Sell')
+    owners_number = models.CharField(max_length=80, verbose_name='Owners')
+    sell_number = models.CharField(max_length=80, verbose_name='Sell')
     lowest_price = models.CharField(max_length=80, verbose_name='Lowest price, USD')
     image = models.ImageField(width_field=600, height_field=600, verbose_name='Image')
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Added to collection')
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'{self.catalogue_number}'

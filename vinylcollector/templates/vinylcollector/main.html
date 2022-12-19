@@ -9,13 +9,13 @@
                         <h1 class="display-4 fw-bold mb-5">It's yours vinyl collection&nbsp;<span
                                 class="underline">HOME</span>.</h1>
                         <p class="fs-5 text-muted mb-5"><span
-                                style="color: rgb(219, 190, 101); background-color: rgb(80, 22, 24);"></span><br><span
-                                style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);">This app will help save info about your LPs</span>
+                                style="color: rgb(219, 190, 101); background-color: rgb(80, 22, 24);"></span><br><span style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);">This app will help save info about your LPs</span>
                         </p>
                         <form class="d-flex justify-content-center flex-wrap" method="get" >
                             <div class="shadow-lg mb-3"><button class="btn btn-primary"><a class="nav-link active" href="/search">SEARCH VINYL</a></button></div><br>
                             {% if user.is_authenticated %}
-                            <br><div class="shadow-lg mb-3"><button class="btn btn-primary"><a class="nav-link active" href="">SHOW COLLECTION</a></button></div>
+                            <form class="d-flex justify-content-center flex-wrap" method="get" >
+                            <div class="shadow-lg mb-3"><button class="btn"><a class="nav-link active"  style="color: rgb(13, 40, 94);" href="">SHOW COLLECTION</a></button></div></form>
                             {% endif %}
                         </form>
                     </div>

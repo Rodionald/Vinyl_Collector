@@ -44,7 +44,7 @@ class SearchingData:
         return self.json_data
 
 
-class Vinyl:
+class Vinyl_Lp:
     def __init__(self, json_data: dict | None):
         self.json_data = json_data
 
