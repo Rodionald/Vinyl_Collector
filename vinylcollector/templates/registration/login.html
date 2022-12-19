@@ -31,12 +31,11 @@
                     </tr>
                 </table>
 
-                <input button class="btn btn-primary" type="submit" value="login"/>
+                <input button class="btn btn-primary" type="submit" value="LOG IN"/>
                 <input type="hidden" name="next" value="{{ next }}"/>
             </form>
                 </div>
             </div>
-            {# Assumes you setup the password_reset view in your URLconf #}
             <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
         </div>
     </div>

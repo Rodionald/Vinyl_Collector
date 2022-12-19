@@ -1,0 +1,20 @@
+{% extends 'vinylcollector/base_template.html' %}
+{% block content %}
+            <div class="row pt-5">
+                <div class="col-md-8 text-center text-md-start mx-auto">
+                    <div class="text-center">
+                        <h1 class="display-4 fw-bold mb-5">Join, for creating your own&nbsp;<span
+                                class="underline">Collection</span>.</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                {{ form.as_p }}</div>
+                            <button class="btn btn-primary shadow" type="submit">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-10 mx-auto">
+                    <div class="text-center position-relative"></div>
+                </div>
+            </div>
+{% endblock %}

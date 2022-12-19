@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <style>
         body {
-            background-image: url('https://www.seekpng.com/png/full/159-1599645_starting-\
-            conversations-light-grey-background-powerpoint.png');
+            background-image: url("{% static 'img/background.png' %}");
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-size: 100% 100%;
+            background-size: 100%;
         }
     </style>
 </head>
@@ -21,11 +20,20 @@
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>VINYL COLLECTOR</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1" style="margin-left: 143px;">
                 <ul class="navbar-nav mx-auto">
+                    {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link active" href="/search">Search &amp; Add Vinyl</a></li>
                     <li class="nav-item"><a class="nav-link" href="" style="margin-right: -167px;">My collection</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul><a class="btn btn-primary shadow" role="button" href="accounts/login/">Sign up</a>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link active" href="/search">Search vinyl</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/accounts/signup/" style="margin-right: -167px;">Registration</a></li>
+                    {% endif %}
+                    </ul>
+                    {% if user.is_authenticated %}
+                    <a class="btn btn-primary shadow" role="button" href="/accounts/logout/">LOG OUT</a>
+                    {% else %}
+                    <a class="btn btn-primary shadow" role="button" href="/accounts/login/">LOG IN</a>
+                    {% endif %}
+
             </div>
         </div>
     </nav>

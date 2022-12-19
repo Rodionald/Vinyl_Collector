@@ -17,10 +17,12 @@
                             <div class="shadow-lg mb-3">
                                 <button class="btn btn-primary" type="submit">SEARCH</button>
                             </div>
+                            {% if user.is_authenticated %}
                         </form>
                             <h2 class="display-4 fw-bold mb-5">Or You can add vinyl&nbsp;<span class="underline">Manually</span>.
                             </h2>
                             <a class="btn btn-primary shadow" role="button" href="/add">Add manually</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-12 col-lg-10 mx-auto">

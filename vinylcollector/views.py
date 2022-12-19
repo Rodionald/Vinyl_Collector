@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views import View
 from vinylcollector.models import Vinyl
 from vinyl.vinyl import *
-from django.contrib.auth.mixins import LoginRequiredMixin
 from vinylcollector.forms import VinylForm
 
 
@@ -54,7 +53,3 @@ class VinylAddView(View):
             'form': form
         }
         return render(request, 'details_vinyl.html', context)
-
-
-class UserLogin(LoginRequiredMixin, View):
-    login_url = '/login/'

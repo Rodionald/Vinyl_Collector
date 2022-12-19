@@ -1,6 +1,7 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
 <div align="middle">
+    <br>
     <img src="{{context.image}}" alt={{context.album}} style="width:500px;height:500px;"/>
     <div class=text_content align="middle">
         <br>
@@ -19,5 +20,9 @@
         Number of sellers: <strong>{{ context.sell }}</strong>
         Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong>
     </div>
+    {% if user.is_authenticated %}
+    <br>
+    <a class="btn btn-primary shadow" role="button" href="">ADD TO COLLECTION</a>
+    {% endif %}
 </div>
 {% endblock %}

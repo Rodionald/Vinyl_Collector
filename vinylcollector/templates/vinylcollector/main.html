@@ -3,10 +3,20 @@
             <div class="row pt-5">
                 <div class="col-md-8 text-center text-md-start mx-auto">
                     <div class="text-center">
-                        <h1 class="display-4 fw-bold mb-5">It's yours vinyl collection&nbsp;<span class="underline">HOME</span>.</h1>
-                        <p class="fs-5 text-muted mb-5"><span style="color: rgb(219, 190, 101); background-color: rgb(80, 22, 24);"></span><br><span style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);">This app will help save info about your LPs</span></p>
+                        {% if user.is_authenticated %}
+                        <p class="display-6 fw-bold mb-5">Hello, {{ user.username }}!</p>
+                        {% endif %}
+                        <h1 class="display-4 fw-bold mb-5">It's yours vinyl collection&nbsp;<span
+                                class="underline">HOME</span>.</h1>
+                        <p class="fs-5 text-muted mb-5"><span
+                                style="color: rgb(219, 190, 101); background-color: rgb(80, 22, 24);"></span><br><span
+                                style="color: rgb(219, 190, 101); background-color: rgb(20, 22, 24);">This app will help save info about your LPs</span>
+                        </p>
                         <form class="d-flex justify-content-center flex-wrap" method="get" >
-                            <div class="shadow-lg mb-3"><button class="btn btn-primary"><a class="nav-link active" href="/search">SEARCH VINYL</a></button></div>
+                            <div class="shadow-lg mb-3"><button class="btn btn-primary"><a class="nav-link active" href="/search">SEARCH VINYL</a></button></div><br>
+                            {% if user.is_authenticated %}
+                            <br><div class="shadow-lg mb-3"><button class="btn btn-primary"><a class="nav-link active" href="">SHOW COLLECTION</a></button></div>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

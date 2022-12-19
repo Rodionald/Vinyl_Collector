@@ -9,6 +9,11 @@ class VinylForm(ModelForm):
                   'catalogue_number', 'year', 'image')
         widgets = {
             'artist': TextInput(attrs={
+                'class': 'form-control'
+            }),
+            'album': TextInput(attrs={
                 'class': 'form-control',
             })
         }
+
+
