@@ -1,9 +1,8 @@
 from django.shortcuts import render
-from django.views import View, generic
+from django.views import View
 from vinylcollector.models import Vinyl
 from vinyl.vinyl import *
 from vinylcollector.forms import VinylForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class MainPage(View):
@@ -23,8 +22,9 @@ class Search(View):
             return vinyl
         return render(request, 'vinylcollector/search_vinyl.html')
 
-    def post(self, request, *args, **kwargs):
-        pass
+    @staticmethod
+    def post(request, *args, **kwargs):
+        return render(request, 'vinylcollector/successfully_added.html')
 
 
 class VinylView(View):
@@ -42,8 +42,7 @@ class VinylView(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        lp = Vinyl(owner='USER')
-        lp.save()
+        return render(request, 'vinylcollector/successfully_added.html')
 
 
 class VinylAddView(View):
@@ -61,11 +60,10 @@ class VinylAddView(View):
         return render(request, 'details_vinyl.html', context)
 
 
-class UserVinylCollectionView(LoginRequiredMixin,generic.ListView):
-    model = Vinyl
-    template_name = 'my_collection.html'
+class UserVinylCollectionView(View):
     paginated_by = 20
 
-    def get(self, *args, **kwargs):
-        return Vinyl.objects.filter(owner=self.request.user).filter(status_exact='o').order_by('created_date')
+    def get(request, Vinyl, *args, **kwargs):
+        vinyl = Vinyl.objects.all()
+        return render(request, 'my_collection.html', {'vinyl': vinyl})
 
