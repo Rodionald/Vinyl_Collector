@@ -179,7 +179,7 @@ class Vinyl_Lp:
             'owners': self.owners_number,
             'sell': self.sell_number,
             'lowest_price': self.lowest_price,
-            'image': self.image_url,
+            'image_url': self.image_url,
         }
         return vinyl
 

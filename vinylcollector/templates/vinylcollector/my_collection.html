@@ -1,0 +1,13 @@
+{% extends 'vinylcollector/base_template.html' %}
+{% block content %}
+<div align="middle">
+    {% for vinyl in vinyls %}
+    <div>
+    <img src="{{vinyl.image_url}}" alt="Vinyl image" style="width:140px;height:140px;" />
+    <div>{{ vinyl.artist }}
+    {{ vinyl.album }}
+    </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

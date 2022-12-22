@@ -22,7 +22,7 @@
                 <ul class="navbar-nav mx-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link active" href="/search">Search &amp; Add Vinyl</a></li>
-                    <li class="nav-item"><a class="nav-link" href="" style="margin-right: -167px;">My collection</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/my_collection" style="margin-right: -167px;">My collection</a></li>
                     {% else %}
                     <li class="nav-item"><a class="nav-link active" href="/search">Search vinyl</a></li>
                     <li class="nav-item"><a class="nav-link" href="/accounts/registration/" style="margin-right: -167px;">Registration</a></li>

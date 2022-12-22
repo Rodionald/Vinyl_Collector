@@ -19,7 +19,8 @@ class Vinyl(models.Model):
     owners_number = models.CharField(max_length=80, verbose_name='Owners')
     sell_number = models.CharField(max_length=80, verbose_name='Sell')
     lowest_price = models.CharField(max_length=80, verbose_name='Lowest price, USD')
-    image = models.ImageField(width_field=600, height_field=600, verbose_name='Image')
+    image = models.ImageField(verbose_name='Image', null=True, blank=True)
+    image_url = models.CharField(max_length=255, verbose_name='Image URL', null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Added to collection')
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 

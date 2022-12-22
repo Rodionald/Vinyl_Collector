@@ -1,8 +1,10 @@
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views import View
 from vinylcollector.models import Vinyl
 from vinyl.vinyl import *
 from vinylcollector.forms import VinylForm
+from django.contrib.auth.models import User
 
 
 class MainPage(View):
@@ -42,6 +44,7 @@ class VinylView(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
+        Vinyl.objects.create('owner')
         return render(request, 'vinylcollector/successfully_added.html')
 
 
@@ -49,21 +52,31 @@ class VinylAddView(View):
 
     @staticmethod
     def get(request, *args, **kwargs):
-        return render(request, 'vinylcollector/add_vinyl.html')
+        form = VinylForm()
+        return render(request, 'vinylcollector/add_vinyl.html', {'form': form})
 
     @staticmethod
     def post(request, *args, **kwargs):
-        form = VinylForm
-        context = {
-            'form': form
-        }
-        return render(request, 'details_vinyl.html', context)
+        vinyl = Vinyl.save(request)
+        return render(request, 'details_vinyl.html', vinyl)
 
 
 class UserVinylCollectionView(View):
-    paginated_by = 20
 
-    def get(request, Vinyl, *args, **kwargs):
-        vinyl = Vinyl.objects.all()
-        return render(request, 'my_collection.html', {'vinyl': vinyl})
+    @staticmethod
+    def get(request, *args, **kwargs):
+        vinyls = Vinyl.objects.all()
+        paginator = Paginator(vinyls, 8)
+        page = request.GET.get('page')
+        try:
+            vinyls = paginator.page(page)
+        except PageNotAnInteger:
+            vinyls = paginator.page(1)
+        except EmptyPage:
+            vinyls = paginator.page(paginator.num_pages)
+        return render(request, 'vinylcollector/my_collection.html', {'vinyls': vinyls})
 
+    @staticmethod
+    def post(request, *args, **kwargs):
+        vinyl = Vinyl.objects.filter()
+        return render(request, 'vinylcollector/my_collection.html', {'vinyl': vinyl})
