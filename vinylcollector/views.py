@@ -26,6 +26,8 @@ class Search(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
+        vinyl = Vinyl()
+        vinyl.save()
         return render(request, 'vinylcollector/successfully_added.html')
 
 
@@ -44,7 +46,8 @@ class VinylView(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        Vinyl.objects.create('owner')
+        context = Vinyl()
+        context.save()
         return render(request, 'vinylcollector/successfully_added.html')
 
 
@@ -57,8 +60,23 @@ class VinylAddView(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        vinyl = Vinyl.save(request)
-        return render(request, 'details_vinyl.html', vinyl)
+        vinyl = Vinyl()
+        vinyl.release = request.POST.get("release")
+        vinyl.artist = request.POST.get("artist")
+        vinyl.album = request.POST.get("album")
+        vinyl.genres = request.POST.get("genres")
+        vinyl.styles = request.POST.get("styles")
+        vinyl.notes = request.POST.get("notes")
+        vinyl.formats = request.POST.get("formats")
+        vinyl.qty = request.POST.get("qty")
+        vinyl.manufacture_region = request.POST.get("manufacture_region")
+        vinyl.label = request.POST.get("label")
+        vinyl.catalogue_number = request.POST.get("catalogue_number")
+        vinyl.year = request.POST.get("year")
+        vinyl.image_url = request.POST.get("image_url")
+        vinyl.owner = request.user
+        vinyl.save()
+        return render(request, 'vinylcollector/successfully_added.html')
 
 
 class UserVinylCollectionView(View):
@@ -66,7 +84,7 @@ class UserVinylCollectionView(View):
     @staticmethod
     def get(request, *args, **kwargs):
         vinyls = Vinyl.objects.all()
-        paginator = Paginator(vinyls, 8)
+        paginator = Paginator(vinyls, 12)
         page = request.GET.get('page')
         try:
             vinyls = paginator.page(page)
@@ -74,7 +92,7 @@ class UserVinylCollectionView(View):
             vinyls = paginator.page(1)
         except EmptyPage:
             vinyls = paginator.page(paginator.num_pages)
-        return render(request, 'vinylcollector/my_collection.html', {'vinyls': vinyls})
+        return render(request, 'vinylcollector/my_collection.html', {'page': page, 'vinyls': vinyls})
 
     @staticmethod
     def post(request, *args, **kwargs):
