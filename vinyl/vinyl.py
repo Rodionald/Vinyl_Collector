@@ -176,8 +176,8 @@ class Vinyl_Lp:
             'catalogue_number': self.cat_num,
             'year': self.year,
             'average_rating': self.average_rating,
-            'owners': self.owners_number,
-            'sell': self.sell_number,
+            'owners_number': self.owners_number,
+            'sell_number': self.sell_number,
             'lowest_price': self.lowest_price,
             'image_url': self.image_url,
         }

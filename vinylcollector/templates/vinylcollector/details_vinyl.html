@@ -1,6 +1,6 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<div align="middle">
+<div align="middle" xmlns="http://www.w3.org/1999/html">
     <br>
     <img src="{{context.image_url}}" alt={{context.album}} style="width:500px;height:500px;"/>
     <div class=text_content align="middle">
@@ -16,16 +16,19 @@
         Year: <strong>{{ context.year }}</strong><br>
         Notes: <strong>{{ context.notes }}</strong>
         Average rating: <strong>{{ context.average_rating }}</strong><br>
-        Number of owners: <strong>{{ context.owners }}</strong>
-        Number of sellers: <strong>{{ context.sell }}</strong>
+        Number of owners: <strong>{{ context.owners_number }}</strong>
+        Number of sellers: <strong>{{ context.sell_number }}</strong>
         Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong>
     </div>
     {% if user.is_authenticated %}
     <br>
     <form method="post">
         {% csrf_token %}
-    <button class="btn btn-primary shadow" type="submit">ADD TO COLLECTION</button>
-    </form>
+        <label hidden>
+            <input name="context" value="{{context}}">
+        </label>
+        <button class="btn btn-primary shadow" type="submit">ADD TO COLLECTION</button>
+        </form>
     {% endif %}
 </div>
 {% endblock %}

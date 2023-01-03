@@ -8,7 +8,7 @@
                 {{ user.username }}!</h1>
             <div class="text-center">
                 {% for vinyl in vinyls %}
-                <img src="{{ vinyl.image_url }}" alt="Vinyl image" style="width:140px;height:140px;"/>
+                <a href="/" ><img src={{vinyl.image_url}} alt="Vinyl image" style="width:140px;height:140px;"/></a>
                 {{ vinyl.artist }}
                 {{ vinyl.album }}
                 {% endfor %}

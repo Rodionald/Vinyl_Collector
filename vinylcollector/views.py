@@ -3,8 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from vinylcollector.models import Vinyl
 from vinyl.vinyl import *
-from vinylcollector.forms import VinylForm
-from django.contrib.auth.models import User
+from vinylcollector.forms import *
 
 
 class MainPage(View):
@@ -26,7 +25,9 @@ class Search(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        vinyl = Vinyl()
+        vinyl_dict = eval(request.POST.get('context'))
+        vinyl = Vinyl(**vinyl_dict)
+        vinyl.owner = request.user
         vinyl.save()
         return render(request, 'vinylcollector/successfully_added.html')
 
@@ -46,8 +47,6 @@ class VinylView(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        context = Vinyl()
-        context.save()
         return render(request, 'vinylcollector/successfully_added.html')
 
 
@@ -83,7 +82,7 @@ class UserVinylCollectionView(View):
 
     @staticmethod
     def get(request, *args, **kwargs):
-        vinyls = Vinyl.objects.all()
+        vinyls = Vinyl.objects.filter(owner=request.user)
         paginator = Paginator(vinyls, 12)
         page = request.GET.get('page')
         try:
