@@ -1,20 +1,36 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<body>
-<div class="row pt-5">
-    <div class="col-md-8 text-center text-md-start mx-auto">
-        <div class="text-center">
-            <h1 class="display-4 fw-bold mb-5">It's your&nbsp;<span class="underline">Collection</span>,
-                {{ user.username }}!</h1>
-            <div class="text-center">
-                {% for vinyl in vinyls %}
-                <a href="/" ><img src={{vinyl.image_url}} alt="Vinyl image" style="width:140px;height:140px;"/></a>
-                {{ vinyl.artist }}
-                {{ vinyl.album }}
-                {% endfor %}
-            </div>
-            {% include "vinylcollector/pagination.html" with page=vinyls %}
-        </div>
-        </div>
+    <div class="row pt-5" xmlns="http://www.w3.org/1999/html">
+        <h1 class="display-4 fw-bold mb-5">It's your&nbsp;<span class="underline">Collection</span>,
+            {{ user.username }}!</h1>
     </div>
-    {% endblock %}
+<div>
+
+        {% for vinyl in vinyls %}
+        <div class="container" data-bss-baguettebox>
+            <div class="col item"><img class="img-fluid" src={{vinyl.image_url}}  alt="img" style="width:20%;height:20%;"/>
+                <div><strong>{{ vinyl.artist }}</strong>
+                    <br>{{ vinyl.album }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<!--    <table aria-colcount="4">-->
+<!--    {% for vinyl in vinyls %}-->
+<!--            <td>-->
+<!--                <div>-->
+<!--            <img src={{vinyl.image_url}} alt="Vinyl image" style="width:20%;height:20%;"/>-->
+<!--                <br>{{ vinyl.artist }}-->
+<!--                <br>{{ vinyl.album }}-->
+<!--                    </div>-->
+<!--            </td>-->
+<!--    {% endfor %}-->
+<!--    </table>-->
+
+    <div>
+    {% include "vinylcollector/pagination.html" with page=vinyls %}
+    </div>
+{% endblock %}
+
+

@@ -1,28 +1,35 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<div align="middle" xmlns="http://www.w3.org/1999/html">
-    <br>
-    <img src="{{context.image_url}}" alt={{context.album}} style="width:500px;height:500px;"/>
-    <div class=text_content align="middle">
+<br>
+<br>
+<div class="row row-cols-1 row-cols-md-2" align="center">
+    <div class="col">
         <br>
-        Artist: <strong>{{ context.artist }}</strong>
-        Album: <strong>{{ context.album }}</strong><br>
-        Genres: <strong>{{ context.genres }}</strong>
-        Styles: <strong>{{ context.styles }}</strong><br>
-        Formats, quantity: <strong>{{ context.formats }}</strong> (<strong>{{ context.qty }}</strong>)
-        Label: <strong>{{ context.label }}</strong>
-        Catalogue number: <strong>{{ context.catalogue_number }}</strong>
-        Manufacture region: <strong>{{ context.manufacture_region }}</strong>
-        Year: <strong>{{ context.year }}</strong><br>
-        Notes: <strong>{{ context.notes }}</strong>
-        Average rating: <strong>{{ context.average_rating }}</strong><br>
-        Number of owners: <strong>{{ context.owners_number }}</strong>
-        Number of sellers: <strong>{{ context.sell_number }}</strong>
-        Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong>
-    </div>
-    {% if user.is_authenticated %}
+        <img class="rounded fit-cover"
+                          style="width:500px;height:500px;"
+                          src="{{context.image_url}}" alt="{{context.album}}"/></div>
+    <div class="col d-flex flex-column justify-content-center p-4">
+        <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+        <div>
+            <h4>Artist: <strong>{{ context.artist }}</strong>
+                Album: <strong>{{ context.album }}</strong><br></h4>
+                Genres: <strong>{{ context.genres }}</strong><br>
+                Styles: <strong>{{ context.styles }}</strong><br>
+                Formats, quantity: <strong>{{ context.formats }}</strong> (<strong>{{ context.qty }}</strong>)<br>
+                Label: <strong>{{ context.label }}</strong><br>
+                Catalogue number: <strong>{{ context.catalogue_number }}</strong><br>
+                Manufacture region: <strong>{{ context.manufacture_region }}</strong><br>
+                Year: <strong>{{ context.year }}</strong><br>
+                Notes: <strong>{{ context.notes }}</strong><br>
+                Average rating: <strong>{{ context.average_rating }}</strong><br>
+                Number of owners: <strong>{{ context.owners_number }}</strong><br>
+                Number of sellers: <strong>{{ context.sell_number }}</strong><br>
+                Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong><br>
+        </div>
+            </div>
+        {% if user.is_authenticated %}
     <br>
-    <form method="post">
+    <form method="post" >
         {% csrf_token %}
         <label hidden>
             <input name="context" value="{{context}}">
@@ -30,5 +37,6 @@
         <button class="btn btn-primary shadow" type="submit">ADD TO COLLECTION</button>
         </form>
     {% endif %}
+    </div>
 </div>
 {% endblock %}
