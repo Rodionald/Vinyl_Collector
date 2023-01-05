@@ -1,36 +1,20 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-    <div class="row pt-5" xmlns="http://www.w3.org/1999/html">
-        <h1 class="display-4 fw-bold mb-5">It's your&nbsp;<span class="underline">Collection</span>,
-            {{ user.username }}!</h1>
-    </div>
-<div>
-
-        {% for vinyl in vinyls %}
-        <div class="container" data-bss-baguettebox>
-            <div class="col item"><img class="img-fluid" src={{vinyl.image_url}}  alt="img" style="width:20%;height:20%;"/>
-                <div><strong>{{ vinyl.artist }}</strong>
-                    <br>{{ vinyl.album }}
-                </div>
-            </div>
+<div class="row pt-5" xmlns="http://www.w3.org/1999/html">
+    <h1 class="display-6 fw-bold mb-5">It's your&nbsp;<span class="underline">Collection</span>,
+        {{ user.username }}! You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your collection is
+        <strong>{{ total_coast }}$</strong></h1>
+</div>
+<div class="card-group row-cols-4">
+    {% for vinyl in vinyls %}
+    <div style="margin: auto">
+    <img class="card-img-top" src={{vinyl.image_url}} alt="img" style="width:150px;height:150px;">
+            <h6 class="card-title">
+                <strong>{{ vinyl.artist }}</strong>
+            </h6>
+                {{ vinyl.album }}
         </div>
-        {% endfor %}
-    </div>
-<!--    <table aria-colcount="4">-->
-<!--    {% for vinyl in vinyls %}-->
-<!--            <td>-->
-<!--                <div>-->
-<!--            <img src={{vinyl.image_url}} alt="Vinyl image" style="width:20%;height:20%;"/>-->
-<!--                <br>{{ vinyl.artist }}-->
-<!--                <br>{{ vinyl.album }}-->
-<!--                    </div>-->
-<!--            </td>-->
-<!--    {% endfor %}-->
-<!--    </table>-->
-
-    <div>
-    {% include "vinylcollector/pagination.html" with page=vinyls %}
-    </div>
+    {% endfor %}
+</div>
+{% include "vinylcollector/pagination.html" with page=vinyls %}
 {% endblock %}
-
-

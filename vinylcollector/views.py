@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Sum
 from django.shortcuts import render
 from django.views import View
-from vinylcollector.models import Vinyl
 from vinyl.vinyl import *
 from vinylcollector.forms import *
 
@@ -30,6 +30,12 @@ class Search(View):
         vinyl.owner = request.user
         vinyl.save()
         return render(request, 'vinylcollector/successfully_added.html')
+
+
+# class VinylFromCollectionView(View):
+#
+#     def get(request, *args, **kwargs):
+#         vinyl = Vinyl.objects.filter(pk=)
 
 
 class VinylView(View):
@@ -82,7 +88,9 @@ class UserVinylCollectionView(View):
 
     @staticmethod
     def get(request, *args, **kwargs):
-        vinyls = Vinyl.objects.filter(owner=request.user)
+        vinyls = Vinyl.objects.filter(owner=request.user).values('artist', 'album', 'image_url', 'lowest_price')
+        qty_vinyl = len(vinyls)
+        total_coast = round(vinyls.aggregate(Sum('lowest_price'))['lowest_price__sum'], 2)
         paginator = Paginator(vinyls, 12)
         page = request.GET.get('page')
         try:
@@ -91,7 +99,8 @@ class UserVinylCollectionView(View):
             vinyls = paginator.page(1)
         except EmptyPage:
             vinyls = paginator.page(paginator.num_pages)
-        return render(request, 'vinylcollector/my_collection.html', {'page': page, 'vinyls': vinyls})
+        return render(request, 'vinylcollector/my_collection.html',
+                      {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
 
     @staticmethod
     def post(request, *args, **kwargs):
