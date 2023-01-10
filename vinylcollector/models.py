@@ -16,9 +16,10 @@ class Vinyl(models.Model):
     catalogue_number = models.CharField(max_length=80, verbose_name='Catalogue number')
     year = models.CharField(max_length=80, verbose_name='Year')
     average_rating = models.CharField(max_length=80, verbose_name='Average rating', null=True, blank=True)
-    owners_number = models.CharField(max_length=80, verbose_name='Owners', null=True, blank=True)
-    sell_number = models.CharField(max_length=80, verbose_name='Sell', null=True, blank=True)
-    lowest_price = models.CharField(max_length=80, verbose_name='Lowest price, USD', null=True, blank=True)
+    owners_number = models.DecimalField(max_digits=80, decimal_places=0, verbose_name='Owners', null=True, blank=True)
+    sell_number = models.DecimalField(max_digits=80, decimal_places=0, verbose_name='Sell', null=True, blank=True)
+    lowest_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Lowest price, USD', null=True,
+                                       blank=True)
     image = models.ImageField(verbose_name='Image', null=True, blank=True)
     image_url = models.CharField(max_length=255, verbose_name='Image URL', null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Added to collection')
@@ -26,5 +27,3 @@ class Vinyl(models.Model):
 
     def __str__(self):
         return f'{self.catalogue_number}'
-
-

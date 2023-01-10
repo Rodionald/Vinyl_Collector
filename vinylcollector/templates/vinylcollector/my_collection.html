@@ -1,6 +1,7 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<div class="row pt-5" xmlns="http://www.w3.org/1999/html">
+<div class="row pt-5" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
     <h1 class="display-6 fw-bold mb-5">It's your&nbsp;<span class="underline">Collection</span>,
         {{ user.username }}! You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your collection is
         <strong>{{ total_coast }}$</strong></h1>
@@ -8,13 +9,15 @@
 <div class="card-group row-cols-4">
     {% for vinyl in vinyls %}
     <div style="margin: auto">
-    <img class="card-img-top" src={{vinyl.image_url}} alt="img" style="width:150px;height:150px;">
-            <h6 class="card-title">
-                <strong>{{ vinyl.artist }}</strong>
-            </h6>
-                {{ vinyl.album }}
-        </div>
+        <a href="my_collection/" name="release" content="{{vinyl.release}}"><img class="card-img-top" src={{vinyl.image_url}} alt="img" style="width:150px;height:150px;"></a>
+        <h6 class="card-title">
+            <strong>{{ vinyl.artist }}</strong>
+        </h6>
+            {{ vinyl.album }}
+    </div>
     {% endfor %}
 </div>
+<div>
 {% include "vinylcollector/pagination.html" with page=vinyls %}
+</div>
 {% endblock %}

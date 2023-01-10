@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.db.models import Sum
+from django.db.models import Sum, Count
 from django.shortcuts import render
 from django.views import View
 from vinyl.vinyl import *
@@ -32,10 +32,18 @@ class Search(View):
         return render(request, 'vinylcollector/successfully_added.html')
 
 
-# class VinylFromCollectionView(View):
-#
-#     def get(request, *args, **kwargs):
-#         vinyl = Vinyl.objects.filter(pk=)
+class VinylFromCollectionView(View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        if request.GET.get('release'):
+            release = request.GET.get('release')
+            print(release)
+            vinyl = eval(Vinyl.objects.filter(release=release))
+            print(vinyl)
+            return render(request, 'vinylcollector/details_vinyl.html', {'vinyl': vinyl})
+        print(request.GET.get('release'))
+        return render(request, 'vinylcollector/successfully_added.html')
 
 
 class VinylView(View):
@@ -89,20 +97,28 @@ class UserVinylCollectionView(View):
     @staticmethod
     def get(request, *args, **kwargs):
         vinyls = Vinyl.objects.filter(owner=request.user).values('artist', 'album', 'image_url', 'lowest_price')
-        qty_vinyl = len(vinyls)
-        total_coast = round(vinyls.aggregate(Sum('lowest_price'))['lowest_price__sum'], 2)
-        paginator = Paginator(vinyls, 12)
-        page = request.GET.get('page')
-        try:
-            vinyls = paginator.page(page)
-        except PageNotAnInteger:
-            vinyls = paginator.page(1)
-        except EmptyPage:
-            vinyls = paginator.page(paginator.num_pages)
-        return render(request, 'vinylcollector/my_collection.html',
-                      {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
+        aggregated_data = vinyls.aggregate(total_coast=Sum('lowest_price'), total_count=Count('id'))
+        qty_vinyl = aggregated_data['total_count']
+        if qty_vinyl == 0:
+            return render(request, 'vinylcollector/empty_collection.html')
+        else:
+            try:
+                total_coast = round(aggregated_data['total_coast'], 2)
+            except TypeError:
+                total_coast = 0
+            paginator = Paginator(vinyls, 12)
+            page = request.GET.get('page')
+            try:
+                vinyls = paginator.page(page)
+            except PageNotAnInteger:
+                vinyls = paginator.page(1)
+            except EmptyPage:
+                vinyls = paginator.page(paginator.num_pages)
+            return render(request, 'vinylcollector/my_collection.html',
+                          {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
 
     @staticmethod
     def post(request, *args, **kwargs):
-        vinyl = Vinyl.objects.filter()
-        return render(request, 'vinylcollector/my_collection.html', {'vinyl': vinyl})
+        release = request.POST.get('release')
+        vinyl = Vinyl.objects.filter(release=release)
+        return render(request, 'vinylcollector/details_vinyl.html', {'vinyl': vinyl})

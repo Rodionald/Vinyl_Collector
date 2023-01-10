@@ -1,0 +1,20 @@
+{% extends 'vinylcollector/base_template.html' %}
+{% block content %}
+<div class="row pt-5" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+    <h1 class="display-6 fw-bold mb-5">
+        {{ user.username }}! You have no <strong>LP's</strong> in your collection!</h1>
+    <h1 class="display-4 fw-bold mb-5">Let's add your first&nbsp;<span class="underline">LP</span>.</h1>
+</div>
+<form class="d-flex justify-content-center flex-wrap" action="/search" method="get">
+    <div class="shadow-lg mb-3">
+        <label for="vendor_code">
+            <input class="form-control" name="vendor_code" id="vendor_code"
+                   placeholder="input vendor code">
+        </label></div>
+    <div class="shadow-lg mb-3">
+        <button class="btn btn-primary" type="submit">SEARCH</button>
+    </div>
+</form>
+<a class="btn btn-primary shadow" role="button" href="/add">Add manually</a>
+{% endblock %}
