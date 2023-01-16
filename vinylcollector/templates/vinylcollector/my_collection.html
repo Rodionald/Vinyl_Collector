@@ -9,7 +9,12 @@
 <div class="card-group row-cols-4">
     {% for vinyl in vinyls %}
     <div style="margin: auto">
-        <a href="my_collection/" name="release" content="{{vinyl.release}}"><img class="card-img-top" src={{vinyl.image_url}} alt="img" style="width:150px;height:150px;"></a>
+        <form method="get" action="my_collection/">
+        <label hidden>
+            <input name="vinyl_id" value="{{vinyl.id}}">
+        </label>
+        <button class="btn shadow" type="submit"><img class="card-img-top" src={{vinyl.image_url}} alt="img" style="width:150px;height:150px;"></button>
+        </form>
         <h6 class="card-title">
             <strong>{{ vinyl.artist }}</strong>
         </h6>

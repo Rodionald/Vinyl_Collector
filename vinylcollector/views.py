@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Sum, Count
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from vinyl.vinyl import *
 from vinylcollector.forms import *
@@ -36,14 +36,11 @@ class VinylFromCollectionView(View):
 
     @staticmethod
     def get(request, *args, **kwargs):
-        if request.GET.get('release'):
-            release = request.GET.get('release')
-            print(release)
-            vinyl = eval(Vinyl.objects.filter(release=release))
-            print(vinyl)
-            return render(request, 'vinylcollector/details_vinyl.html', {'vinyl': vinyl})
-        print(request.GET.get('release'))
-        return render(request, 'vinylcollector/successfully_added.html')
+        if request.GET.get('vinyl_id'):
+            vinyl_id = request.GET.get('vinyl_id')
+            vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+            return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl})
+        return render(request, 'vinylcollector/my_collection.html')
 
 
 class VinylView(View):
@@ -96,7 +93,8 @@ class UserVinylCollectionView(View):
 
     @staticmethod
     def get(request, *args, **kwargs):
-        vinyls = Vinyl.objects.filter(owner=request.user).values('artist', 'album', 'image_url', 'lowest_price')
+        vinyls = Vinyl.objects.filter(owner=request.user).values('id', 'artist', 'album', 'image_url',
+                                                                 'lowest_price')
         aggregated_data = vinyls.aggregate(total_coast=Sum('lowest_price'), total_count=Count('id'))
         qty_vinyl = aggregated_data['total_count']
         if qty_vinyl == 0:
@@ -121,4 +119,4 @@ class UserVinylCollectionView(View):
     def post(request, *args, **kwargs):
         release = request.POST.get('release')
         vinyl = Vinyl.objects.filter(release=release)
-        return render(request, 'vinylcollector/details_vinyl.html', {'vinyl': vinyl})
+        return render(request, 'vinylcollector/collection_highlights.html', {'vinyl': vinyl})

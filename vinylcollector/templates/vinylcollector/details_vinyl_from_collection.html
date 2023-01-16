@@ -1,0 +1,32 @@
+{% extends 'vinylcollector/base_template.html' %}
+{% block content %}
+<br>
+<br>
+<div class="row row-cols-1 row-cols-md-2" align="center">
+    <div class="col">
+        <br>
+        <img class="rounded fit-cover"
+             style="width:500px;height:500px;"
+             src="{{vinyl.image_url}}" alt="{{vinyl.album}}"/></div>
+    <div class="col d-flex flex-column justify-content-center p-4">
+        <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+            <div>
+                <h4>Artist: <strong>{{ vinyl.artist }}</strong>
+                    Album: <strong>{{ vinyl.album }}</strong><br></h4>
+                Genres: <strong>{{ vinyl.genres }}</strong><br>
+                Styles: <strong>{{ vinyl.styles }}</strong><br>
+                Formats, quantity: <strong>{{ vinyl.formats }}</strong> (<strong>{{ vinyl.qty }}</strong>)<br>
+                Label: <strong>{{ vinyl.label }}</strong><br>
+                Catalogue number: <strong>{{ vinyl.catalogue_number }}</strong><br>
+                Manufacture region: <strong>{{ vinyl.manufacture_region }}</strong><br>
+                Year: <strong>{{ vinyl.year }}</strong><br>
+                Notes: <strong>{{ vinyl.notes }}</strong><br>
+                Average rating: <strong>{{ vinyl.average_rating }}</strong><br>
+                Number of owners: <strong>{{ vinyl.owners_number }}</strong><br>
+                Number of sellers: <strong>{{ vinyl.sell_number }}</strong><br>
+                Lowest price of LP, USD: <strong>{{ vinyl.lowest_price }}</strong><br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
