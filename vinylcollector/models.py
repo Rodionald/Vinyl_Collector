@@ -23,6 +23,7 @@ class Vinyl(models.Model):
     image = models.ImageField(verbose_name='Image', null=True, blank=True)
     image_url = models.CharField(max_length=255, verbose_name='Image URL', null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Added to collection')
+    # refreshing_date = models.DateField(auto_now_add=True, verbose_name='Date of refreshing')
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):

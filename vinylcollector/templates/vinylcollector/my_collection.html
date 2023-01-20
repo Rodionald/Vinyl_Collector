@@ -10,19 +10,20 @@
     {% for vinyl in vinyls %}
     <div style="margin: auto">
         <form method="get" action="my_collection/">
-        <label hidden>
-            <input name="vinyl_id" value="{{vinyl.id}}">
-        </label>
-        <button class="btn shadow" type="submit"><img class="card-img-top" src={{vinyl.image_url}} alt="img" style="width:150px;height:150px;"></button>
+            <label hidden>
+                <input name="vinyl_id" value="{{vinyl.id}}">
+            </label>
+            <button class="btn shadow" type="submit"><img class="card-img-top" src={{vinyl.image_url}} alt="img"
+                                                          style="width:150px;height:150px;"></button>
         </form>
         <h6 class="card-title">
             <strong>{{ vinyl.artist }}</strong>
         </h6>
-            {{ vinyl.album }}
+        {{ vinyl.album }}
     </div>
     {% endfor %}
 </div>
 <div>
-{% include "vinylcollector/pagination.html" with page=vinyls %}
+    {% include "vinylcollector/pagination.html" with page=vinyls %}
 </div>
 {% endblock %}

@@ -182,4 +182,3 @@ class Vinyl_Lp:
             'image_url': self.image_url,
         }
         return vinyl
-

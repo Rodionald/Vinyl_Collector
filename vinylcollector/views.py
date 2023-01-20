@@ -39,6 +39,8 @@ class VinylFromCollectionView(View):
         if request.GET.get('vinyl_id'):
             vinyl_id = request.GET.get('vinyl_id')
             vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+            # if vinyl.refreshing_date > 5:
+            #
             return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl})
         return render(request, 'vinylcollector/my_collection.html')
 
@@ -117,6 +119,21 @@ class UserVinylCollectionView(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        release = request.POST.get('release')
-        vinyl = Vinyl.objects.filter(release=release)
-        return render(request, 'vinylcollector/collection_highlights.html', {'vinyl': vinyl})
+
+        filter = request.POST.get('filter')
+        vinyls = Vinyl.objects.order_by(filter)
+        try:
+            total_coast = round(aggregated_data['total_coast'], 2)
+        except TypeError:
+            total_coast = 0
+        paginator = Paginator(vinyls, 12)
+        page = request.GET.get('page')
+        try:
+            vinyls = paginator.page(page)
+        except PageNotAnInteger:
+            vinyls = paginator.page(1)
+        except EmptyPage:
+            vinyls = paginator.page(paginator.num_pages)
+        return render(request, 'vinylcollector/my_collection.html',
+                      {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
+
