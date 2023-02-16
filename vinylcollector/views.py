@@ -117,23 +117,3 @@ class UserVinylCollectionView(View):
             return render(request, 'vinylcollector/my_collection.html',
                           {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
 
-    @staticmethod
-    def post(request, *args, **kwargs):
-
-        filter = request.POST.get('filter')
-        vinyls = Vinyl.objects.order_by(filter)
-        try:
-            total_coast = round(aggregated_data['total_coast'], 2)
-        except TypeError:
-            total_coast = 0
-        paginator = Paginator(vinyls, 12)
-        page = request.GET.get('page')
-        try:
-            vinyls = paginator.page(page)
-        except PageNotAnInteger:
-            vinyls = paginator.page(1)
-        except EmptyPage:
-            vinyls = paginator.page(paginator.num_pages)
-        return render(request, 'vinylcollector/my_collection.html',
-                      {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
-
