@@ -4,7 +4,7 @@ from vinylcollector.models import Vinyl
 
 
 class VinylSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    # owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Vinyl
@@ -32,7 +32,7 @@ class VinylSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # posts = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = User
