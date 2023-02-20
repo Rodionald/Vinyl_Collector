@@ -29,33 +29,34 @@ class VinylDetailsView(APIView):
 
     @staticmethod
     def get(request, pk):
-        vinyls = Vinyl.objects.filter(id=pk)
+        vinyls = Vinyl.objects.filter(pk=pk)
         serializer = VinylSerializer(vinyls, many=True)
         return Response({"vinyls": serializer.data})
 
     @staticmethod
-    def post(request):
+    def post(request, pk):
         vinyl = request.data.get('vinyls')
         serializer = VinylSerializer(data=vinyl)
         if serializer.is_valid(raise_exception=True):
             vinyl_saved = serializer.save()
-            return Response({"success": "Vinyl '{}' created successfully".format(vinyl_saved.catalogue_number)})
+            return Response({"success": f"Vinyl with catalogue number:'{vinyl_saved.catalogue_number}' created "
+                                        f"successfully"})
 
     @staticmethod
     def put(request, pk):
-        saved_article = generics.get_object_or_404(Vinyl.objects.all(), pk=pk)
+        saved_vinyl = generics.get_object_or_404(Vinyl.objects.all(), pk=pk)
         data = request.data.get('vinyls')
-        serializer = VinylSerializer(instance=saved_article, data=data, partial=True)
+        serializer = VinylSerializer(instance=saved_vinyl, data=data, partial=True)
         if serializer.is_valid(raise_exception=True):
-            vinyl_saved = serializer.save()
+            vinyl_saved = serializer.create(data)
             return Response({
-                "success": "Vinyl '{}' updated successfully".format(vinyl_saved.title),
+                "success": f"Vinyl with catalogue number:'{vinyl_saved.catalogue_number}' updated successfully",
             })
 
     @staticmethod
     def delete(request, pk):
-        article = generics.get_object_or_404(Vinyl.objects.all(), pk=pk)
-        article.delete()
+        vinyl = generics.get_object_or_404(Vinyl.objects.all(), pk=pk)
+        vinyl.delete()
         return Response({
-            "message": "Vinyl with id `{}` has been deleted.".format(pk)
+            "message": f"Vinyl with catalogue number:'{vinyl.catalogue_number}' has been deleted."
         }, status=204)

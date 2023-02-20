@@ -27,6 +27,7 @@ class VinylSerializer(serializers.ModelSerializer):
             instance.label = validated_data.get('label', instance.label)
             instance.year = validated_data.get('year', instance.year)
             instance.image_url = validated_data.get('image_url', instance.image_url)
+            instance.owner = validated_data.get('owner', instance.owner)
             instance.save()
             return instance
 
