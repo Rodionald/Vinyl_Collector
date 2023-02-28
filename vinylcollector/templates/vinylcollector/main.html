@@ -8,14 +8,14 @@
                         {% endif %}
                         <h1 class="display-4 fw-bold mb-5">It's your's vinyl collection&nbsp;<span
                                 class="underline">HOME</span>.</h1>
-                        <p class="fs-5 text-muted mb-5"><span
-                                style="color: rgb(219, 190, 101); background-color: rgb(80, 22, 24);"></span><br><span style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);">This app will help save info about your LPs</span>
-                        </p>
+                        <h1 class="display-6 fw-bold mb-5"><span
+                                style="color: rgb(219, 190, 101); background-color: rgb(80, 22, 24);"></span><br><span style="color: rgb(0,0,0);">This app will help save info about your LPs</span>
+                        </h1>
                         <form class="d-flex justify-content-center flex-wrap" method="get" >
-                            <div class="shadow-lg mb-3"><button class="btn btn-primary"><a class="nav-link active" href="/search">SEARCH VINYL</a></button></div><br>
+                            <div class="shadow-lg mb-3"><a class="btn btn-light" href="/search">SEARCH VINYL</a></div><br>
                             {% if user.is_authenticated %}
                             <form class="d-flex justify-content-center flex-wrap" method="get" >
-                            <div class="shadow-lg mb-3"><button class="btn"><a class="nav-link active"  style="color: rgb(13, 40, 94);" href="/my_collection">SHOW COLLECTION</a></button></div></form>
+                            <div class="shadow-lg mb-3"><a class="btn btn-secondary" href="/my_collection">SHOW COLLECTION</a></div></form>
                             {% endif %}
                         </form>
                     </div>
