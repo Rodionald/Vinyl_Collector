@@ -27,7 +27,13 @@
                 Lowest price of LP, USD: <strong>{{ vinyl.lowest_price }}</strong><br>
                 <br>
                 <div align="center">
-                <a class="btn btn-outline-danger" role="button" href="/add"  method="DELETE">Delete from collection</a>
+                    <form action="" method="DELETE">
+                    {% csrf_token %}
+                    <a class="btn btn-outline-danger">Delete from collection</a>
+                    </form>
+                    <form action="" method="POST">
+                    <a class="btn btn-outline-success" href="/add">Edit LP's info</a>
+                    </form>
                 </div>
             </div>
         </div>

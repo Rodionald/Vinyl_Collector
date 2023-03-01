@@ -4,9 +4,9 @@
                 <div class="col-md-8 text-center text-md-start mx-auto">
                     <div class="text-center">
                         <h1 class="display-4 fw-bold mb-5">Let's search the info about yours&nbsp;<span class="underline">LP</span>.</h1>
-                        <p class="fs-5 text-muted mb-5"><span
-                                style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);">Type the vendor code of your LP.<br>NOTICE! For Russian LP, vendor code types in Russian language!!!</span><br><span
-                                style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);"></span></p>
+                        <p class="display-6 fw-bold mb-5"><span
+                                style="color: rgb(0, 0, 0);">Type the vendor code of your LP.</span></p>
+                        <span class="text-bg-danger" style="background-color: rgb(255, 0, 0);"> NOTICE! For Russian LP, vendor code types in Russian language!!!  </span><br></p>
                         <form class="d-flex justify-content-center flex-wrap" method="get">
                             <div class="shadow-lg mb-3">
                                 <label for="vendor_code">
@@ -14,13 +14,13 @@
                                        placeholder="input vendor code">
                             </label></div>
                             <div class="shadow-lg mb-3">
-                                <button class="btn btn-primary" type="submit">SEARCH</button>
+                                <button class="btn btn-secondary" type="submit">SEARCH</button>
                             </div>
                             {% if user.is_authenticated %}
                         </form>
-                            <h2 class="fs-5 text-muted mb-5"><span style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);"><br>Or You can add vinyl&nbsp; Manually</span>.
+                            <h2 class="display-6 fw-bold mb-5"><span style="color: rgb(0, 0, 0);"><br>Or You can add vinyl&nbsp; Manually</span>.
                             </h2>
-                            <a class="btn btn-primary shadow" role="button" href="/add">Add manually</a>
+                            <a class="btn btn-light" href="/add">Add manually</a>
                         {% endif %}
                     </div>
                 </div>

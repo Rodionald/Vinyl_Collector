@@ -16,29 +16,28 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span>VINYL COLLECTOR</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1" style="margin-left: 143px;">
-                <ul class="navbar-nav mx-auto">
+    <nav class="navbar navbar-light fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="/"><span>VINYL COLLECTOR</span></a>
+            <div class="navbar-expand-xl">
+                <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                    <li><a class="btn btn-outline-secondary" href="/search">Search &amp; Add Vinyl</a></li>
-                    <li class="nav-item"><a class="btn btn-light" href="/my_collection" style="margin-right: -167px;">My collection</a></li>
+                    <li><a class="btn btn-outline-secondary" href="/search" style="border: 0; color: 0;">Search &amp; Add Vinyl</a></li>
+                    <li><a class="btn btn-outline-secondary" href="/my_collection" style="border: 0; color: 0;" align="center">My collection</a></li>
                     {% else %}
-                    <li class="nav-item"><a class="btn btn-light" href="/search">Search vinyl</a></li>
-                    <li class="nav-item"><a class="btn btn-light" href="/accounts/registration/" style="margin-right: -167px;">Registration</a></li>
+                    <li><a class="btn btn-outline-secondary" href="/search" style="border: 0; color: 0;">Search vinyl</a></li>
+                    <li><a class="btn btn-outline-secondary" href="/accounts/registration/" style="border: 0; color: 0;">Registration</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li><a class="btn btn-outline-danger shadow" style="border: 0; color: 0;" href="/accounts/logout/">LOG OUT</a></li>
+                    {% else %}
+                    <li><a class="btn btn-outline-success shadow" style="border: 0; color: 0;" href="/accounts/login/">LOG IN</a></li>
                     {% endif %}
                     </ul>
-                    {% if user.is_authenticated %}
-                    <a class="btn btn-outline-dark shadow" role="button" href="/accounts/logout/">LOG OUT</a>
-                    {% else %}
-                    <a class="btn btn-primary shadow" role="button" href="/accounts/login/">LOG IN</a>
-                    {% endif %}
-
             </div>
         </div>
     </nav>
     <header class="pt-5">
-        <div class="container pt-4 pt-xl-5" align="center">
+        <div class="container pt-1" align="center">
             {% block content %}
             {% endblock %}
         </div>

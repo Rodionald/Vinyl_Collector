@@ -7,15 +7,12 @@
                                 class="underline">Collection</span>.</h1>
                         <form method="post">
                             {% csrf_token %}
-                             <div class="col-12 col-lg-10 mx-auto">
-                                 <div class="text-center position-relative">{{ form.as_p }}</div></div>
+                             <div>
+                                 <div>{{ form.as_p }}</div></div>
 
-                            <button class="btn btn-primary shadow" type="submit">Sign up</button>
+                            <button class="btn btn-secondary shadow" type="submit">Sign up</button>
                         </form>
                     </div>
-                </div>
-                <div class="col-12 col-lg-10 mx-auto">
-                    <div class="text-center position-relative"></div>
                 </div>
             </div>
 {% endblock %}

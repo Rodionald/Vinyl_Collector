@@ -8,18 +8,20 @@
 </div>
 <div class="card-group row-cols-4">
     {% for vinyl in vinyls %}
-    <div style="margin: auto">
+    <div>
         <form method="get" action="my_collection/">
             <label hidden>
                 <input name="vinyl_id" value="{{vinyl.id}}">
             </label>
             <button class="btn"><img src={{vinyl.image_url}} alt="img"
-                                                          style="width:130px;height:130px;"></button>
+                                                          style="width:150px;height:150px;"></button>
         </form>
-        <h6 class="card-title">
+        <h6 class="text">
             <strong>{{ vinyl.artist }}</strong>
         </h6>
+        <h6 class="text">
         {{ vinyl.album }}
+        </h6>
     </div>
     {% endfor %}
 </div>
