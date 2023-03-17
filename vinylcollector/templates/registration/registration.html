@@ -8,8 +8,8 @@
                         <form method="post">
                             {% csrf_token %}
                              <div>
-                                 <div>{{ form.as_p }}</div></div>
-
+                             {{ form.as_p }}
+                             </div>
                             <button class="btn btn-secondary shadow" type="submit">Sign up</button>
                         </form>
                     </div>

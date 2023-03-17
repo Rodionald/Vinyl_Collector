@@ -27,16 +27,28 @@
                 Lowest price of LP, USD: <strong>{{ vinyl.lowest_price }}</strong><br>
                 <br>
                 <div align="center">
-                    <form action="" method="DELETE">
-                    {% csrf_token %}
-                    <a class="btn btn-outline-danger">Delete from collection</a>
-                    </form>
-                    <form action="" method="POST">
-                    <a class="btn btn-outline-success" href="/add">Edit LP's info</a>
-                    </form>
+                    <button onclick="vinylDelete('{{vinyl.id}}', (data)=>{console.log(data)})" class="btn btn-danger button-form js-tooltip">DELETE</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+function vinylDelete(vinylId, onSuccess, onError) {
+    const url = `/api/vinyls/${vinylId}`
+  fetch(url, {
+    method: 'DELETE',
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    if (onSuccess){onSuccess(data)}
+  })
+  .catch((error) => {
+    if (onError){onError(error)}
+  });
+}
+</script>
 {% endblock %}
