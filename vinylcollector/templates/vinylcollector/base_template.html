@@ -25,12 +25,12 @@
                     <li><a class="btn btn-outline-secondary" href="/my_collection" style="border: 0; color: 0;" align="center">My collection</a></li>
                     {% else %}
                     <li><a class="btn btn-outline-secondary" href="/search" style="border: 0; color: 0;">Search vinyl</a></li>
-                    <li><a class="btn btn-outline-secondary" href="/accounts/registration/" style="border: 0; color: 0;">Registration</a></li>
+                    <li><a class="btn btn-outline-secondary" href="/registration" style="border: 0; color: 0;">Registration</a></li>
                     {% endif %}
                     {% if user.is_authenticated %}
-                    <li><a class="btn btn-outline-danger shadow" style="border: 0; color: 0;" href="/accounts/logout/">LOG OUT</a></li>
+                    <li><a class="btn btn-outline-danger shadow" style="border: 0; color: 0;" href="/logout/">LOG OUT</a></li>
                     {% else %}
-                    <li><a class="btn btn-outline-success shadow" style="border: 0; color: 0;" href="/accounts/login/">LOG IN</a></li>
+                    <li><a class="btn btn-outline-success shadow" style="border: 0; color: 0;" href="/login/">LOG IN</a></li>
                     {% endif %}
                     </ul>
             </div>

@@ -1,4 +1,3 @@
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -54,9 +53,10 @@ class VinylDetailsView(APIView):
                 "success": f"Vinyl with catalogue number:'{vinyl_saved.catalogue_number}' updated successfully",
             })
 
-    @csrf_exempt
+    @staticmethod
     def delete(request, pk):
         vinyl = generics.get_object_or_404(Vinyl, pk=pk)
+        print(request.user)
         vinyl.delete()
         return Response({
             "message": f"Vinyl with catalogue number:'{vinyl.catalogue_number}' has been deleted."
