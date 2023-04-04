@@ -39,8 +39,6 @@ class VinylFromCollectionView(View):
         if request.GET.get('vinyl_id'):
             vinyl_id = request.GET.get('vinyl_id')
             vinyl = get_object_or_404(Vinyl, id=vinyl_id)
-            # if vinyl.refreshing_date > 5:
-            #
             return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl})
         return render(request, 'vinylcollector/my_collection.html')
 
@@ -87,6 +85,7 @@ class VinylAddView(View):
         vinyl.year = request.POST.get("year")
         vinyl.image_url = request.POST.get("image_url")
         vinyl.owner = request.user
+        vinyl.user_rating = request.POST.get("user_rating")
         vinyl.save()
         return render(request, 'vinylcollector/successfully_added.html')
 

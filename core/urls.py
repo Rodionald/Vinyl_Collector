@@ -5,6 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('', include('vinylcollector.urls')),
-    path('', include('accounts.urls')),
     path('', include('django.contrib.auth.urls')),
 ]
