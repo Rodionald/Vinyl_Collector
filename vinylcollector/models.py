@@ -13,7 +13,7 @@ class Vinyl(models.Model):
     qty = models.CharField(max_length=8, verbose_name='Qty', null=True, blank=True)
     manufacture_region = models.CharField(max_length=80, verbose_name='Manufacture region')
     label = models.CharField(max_length=80, verbose_name='Label')
-    catalogue_number = models.CharField(max_length=80, verbose_name='Catalogue number')
+    catalogue_number = models.CharField(max_length=80, verbose_name='Catalogue number', null=True, blank=True)
     year = models.CharField(max_length=80, verbose_name='Year')
     average_rating = models.CharField(max_length=80, verbose_name='Average rating', null=True, blank=True)
     owners_number = models.DecimalField(max_digits=80, decimal_places=0, verbose_name='Owners', null=True, blank=True)
@@ -25,6 +25,7 @@ class Vinyl(models.Model):
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Added to collection')
     # refreshing_date = models.DateField(auto_now_add=True, verbose_name='Date of refreshing')
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user_rating = models.CharField(max_length=2, verbose_name='User rating', null=True, blank=True)
 
     def __str__(self):
         return f'{self.catalogue_number}'

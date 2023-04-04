@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth.models import User
@@ -17,6 +19,8 @@ class UserDetail(generics.RetrieveAPIView):
 
 
 class VinylListView(APIView):
+    # authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     def get(request):
@@ -26,6 +30,7 @@ class VinylListView(APIView):
 
 
 class VinylDetailsView(APIView):
+    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     def get(request, pk):
@@ -56,7 +61,6 @@ class VinylDetailsView(APIView):
     @staticmethod
     def delete(request, pk):
         vinyl = generics.get_object_or_404(Vinyl, pk=pk)
-        print(request.user)
         vinyl.delete()
         return Response({
             "message": f"Vinyl with catalogue number:'{vinyl.catalogue_number}' has been deleted."
