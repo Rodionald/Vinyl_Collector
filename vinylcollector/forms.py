@@ -5,7 +5,7 @@ from vinylcollector.models import Vinyl
 class VinylForm(ModelForm):
     class Meta:
         model = Vinyl
-        fields = '__all__'
+        fields = ["artist", "album", "genres", "notes", "formats", "qty", "image", "user_rating"]
 
 
 class DiscogsVinylForm(ModelForm):

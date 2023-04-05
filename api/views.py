@@ -1,25 +1,30 @@
 from rest_framework import generics
-from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
-from .models import Vinyl
+from vinylcollector.models import Vinyl, UserData
 from .serializers import UserSerializer, VinylSerializer
 
 
 class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
+    queryset = UserData.objects.all()
     serializer_class = UserSerializer
 
 
 class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
+    queryset = UserData.objects.all()
     serializer_class = UserSerializer
 
 
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = UserSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
 class VinylListView(APIView):
-    # authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
 
     @staticmethod
@@ -30,7 +35,6 @@ class VinylListView(APIView):
 
 
 class VinylDetailsView(APIView):
-    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     def get(request, pk):

@@ -1,12 +1,23 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
-from vinylcollector.models import Vinyl
+from vinylcollector.models import Vinyl, UserData
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserData
+        fields = '__all__'
+
+    def create(self, validated_data):
+        user = UserData.objects.create(email=validated_data['email'],
+                                       name=validated_data['name']
+                                       )
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 
 class VinylSerializer(serializers.ModelSerializer):
-    # owner = serializers.ReadOnlyField(source='owner.username')
-
     class Meta:
         model = Vinyl
         fields = '__all__'
@@ -28,30 +39,5 @@ class VinylSerializer(serializers.ModelSerializer):
             instance.label = validated_data.get('label', instance.label)
             instance.year = validated_data.get('year', instance.year)
             instance.image_url = validated_data.get('image_url', instance.image_url)
-            instance.save()
-            return instance
-
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ['id', 'username', 'email', 'first_name', 'is_active']
-
-    token = serializers.SerializerMethodField()
-    password = serializers.CharField(write_only=True)
-
-    @staticmethod
-    def get_token(user):
-        refresh = RefreshToken.for_user(user)
-        return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-        }
-
-    def create(self, validated_data):
-        password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)
-        if password is not None:
-            instance.set_password(password)
             instance.save()
             return instance
