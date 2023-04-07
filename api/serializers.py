@@ -1,20 +1,38 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
-from vinylcollector.models import Vinyl, UserData
+from vinylcollector.models import Vinyl, User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserData
+        model = User
         fields = '__all__'
 
     def create(self, validated_data):
-        user = UserData.objects.create(email=validated_data['email'],
+        user = User.objects.create(email=validated_data['email'],
                                        name=validated_data['name']
                                        )
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop('profile')
+        profile = instance.profile
+
+        instance.email = validated_data.get('email', instance.email)
+        instance.save()
+
+        profile.title = profile_data.get('title', profile.title)
+        profile.dob = profile_data.get('dob', profile.dob)
+        profile.address = profile_data.get('address', profile.address)
+        profile.country = profile_data.get('country', profile.country)
+        profile.city = profile_data.get('city', profile.city)
+        profile.zip = profile_data.get('zip', profile.zip)
+        profile.photo = profile_data.get('photo', profile.photo)
+        profile.save()
+
+        return instance
 
 
 class VinylSerializer(serializers.ModelSerializer):

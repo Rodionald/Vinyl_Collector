@@ -6,7 +6,8 @@
         <div class="text-center">
             <h1 class="display-4 fw-bold mb-5">Let's add vinyl to your&nbsp;<span class="underline">Collection</span>.
             </h1>
-            <p class="fs-5 text-muted mb-5"><span style="color: rgb(212, 212, 212); background-color: rgb(0, 0, 0);">
+            <p class="fs-5 text-muted mb-5"><span
+                                style="color: rgb(0, 0, 0);">
                 Please input info of your LP.</span>
         </div>
         <div class="text-center">
@@ -14,7 +15,7 @@
             <form method="post" class="vinyl-form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class="btn btn-primary shadow" type="submit" href="/my_collection">Add vinyl</button>
+                <button class="btn btn-secondary" type="submit" href="/my_collection">Add vinyl</button>
             </form>
         </div>
     </div>

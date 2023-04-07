@@ -4,6 +4,9 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from vinyl.vinyl import *
 from vinylcollector.forms import *
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
 
 
 class MainPage(View):
@@ -30,6 +33,12 @@ class Search(View):
         vinyl.owner = request.user
         vinyl.save()
         return render(request, 'vinylcollector/successfully_added.html')
+
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/registration.html'
 
 
 class VinylFromCollectionView(View):
