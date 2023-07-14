@@ -24,4 +24,4 @@ Run the app locally:
 
 Run the app with gunicorn:
 
-    gunicorn core.wsgi -b 0.0.0.0:8001
+    gunicorn core.wsgi -b 0.0.0.0:8000
