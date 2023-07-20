@@ -3,11 +3,15 @@ version: '3.9'
 services:
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000 --settings=core.settings.prod
+    command: bash -c "python manage.py migrate --settings=core.settings.prod
+             && python manage.py collectstatic --settings=core.settings.prod
+             && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/usr/src/VinylCollector/
-    ports:
-      - 8000:8000
+      - static_volume:/home/VinylCollector/web/static
+      - media_volume:/home/VinylCollector/web/media
+    expose:
+      - 8000
     env_file:
       - ./.env
     depends_on:
@@ -23,6 +27,17 @@ services:
       - POSTGRES_PASSWORD=12345678
     ports:
       - "5432:5432"
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/VinylCollector/web/static
+      - media_volume:/home/VinylCollector/web/media
+    ports:
+      - 1337:80
+    depends_on:
+      - web
 
 volumes:
   postgres_volume:
+  static_volume:
+  media_volume:
