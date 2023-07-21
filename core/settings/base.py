@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
-import environ
 from pathlib import Path
+
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -28,7 +29,9 @@ SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:1337', 'https://localhost:1337', 'http://91.107.195.53:1337',
+                        'https://91.107.195.53:1337', 'http://vinylcollector.by',
+                        'https://vinylcollector.by']
 
 # Application definition
 
