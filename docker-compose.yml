@@ -29,14 +29,22 @@ services:
       - "5432:5432"
   nginx:
     build: ./nginx
+    restart: always
     volumes:
       - static_volume:/home/VinylCollector/web/static
       - media_volume:/home/VinylCollector/web/media
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
     ports:
       - 80:80
-    restart: always
+      - 443:443
     depends_on:
       - web
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 
 volumes:
   postgres_volume:
