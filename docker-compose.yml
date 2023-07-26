@@ -28,12 +28,12 @@ services:
     ports:
       - "5432:5432"
   nginx:
-    build: ./nginx
+    image: nginx:latest
     restart: always
     volumes:
       - static_volume:/home/VinylCollector/web/static
       - media_volume:/home/VinylCollector/web/media
-      - ./nginx/:/etc/nginx/conf.d/:ro
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
     ports:
