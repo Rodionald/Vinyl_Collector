@@ -4,7 +4,6 @@ services:
   web:
     build: .
     command: bash -c "python manage.py migrate --settings=core.settings.prod
-             && python manage.py collectstatic --settings=core.settings.prod
              && gunicorn core.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/usr/src/VinylCollector/
@@ -33,11 +32,12 @@ services:
     volumes:
       - static_volume:/home/VinylCollector/web/static
       - media_volume:/home/VinylCollector/web/media
+      - ./nginx/conf/:/etc/nginx/conf.d/:ro
       - ./certbot/www:/var/www/certbot/:ro
       - ./certbot/conf/:/etc/nginx/ssl/:ro
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     depends_on:
       - web
   certbot:
