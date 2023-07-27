@@ -9,8 +9,8 @@ services:
       - .:/usr/src/VinylCollector/
       - static_volume:/home/VinylCollector/web/static
       - media_volume:/home/VinylCollector/web/media
-    expose:
-      - 8000
+    ports:
+      - "8000:80"
     env_file:
       - ./.env
     depends_on:
@@ -27,7 +27,7 @@ services:
     ports:
       - "5432:5432"
   nginx:
-    build: ./nginx
+    image: nginx:latest
     restart: always
     volumes:
       - static_volume:/home/VinylCollector/web/static
