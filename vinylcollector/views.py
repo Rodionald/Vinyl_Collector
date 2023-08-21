@@ -36,7 +36,7 @@ class Search(View):
 
 
 class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = UserRegisterForm
     success_url = reverse_lazy('login')
     template_name = 'registration/registration.html'
 
