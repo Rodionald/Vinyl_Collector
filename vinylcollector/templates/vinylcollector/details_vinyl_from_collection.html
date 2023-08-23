@@ -42,61 +42,56 @@
         content: '☆';
     }
 </style>
-<div>
-<div class="row row-cols-2">
-    <div class="col">
-        <br>
-        <img class="rounded fit-cover"
-             style="width:500px;height:500px;"
-             src="{{vinyl.image_url}}" alt="{{vinyl.album}}"/></div>
-    <div>
-        <div class="col-lg-auto">
-            <div>
-                <br>
-                <h4>Artist: <strong>{{ vinyl.artist }}</strong>
-                    Album: <strong>{{ vinyl.album }}</strong><br></h4>
-                Genres: <strong>{{ vinyl.genres }}</strong><br>
-                Styles: <strong>{{ vinyl.styles }}</strong><br>
-                Formats, quantity: <strong>{{ vinyl.formats }}</strong> (<strong>{{ vinyl.qty }}</strong>)<br>
-                Label: <strong>{{ vinyl.label }}</strong><br>
-                Catalogue number: <strong>{{ vinyl.catalogue_number }}</strong><br>
-                Manufacture region: <strong>{{ vinyl.manufacture_region }}</strong><br>
-                Year: <strong>{{ vinyl.year }}</strong><br>
-                Notes: <strong>{{ vinyl.notes }}</strong><br>
-                Average rating: <strong>{{ vinyl.average_rating }}</strong><br>
-                Number of owners: <strong>{{ vinyl.owners_number }}</strong><br>
-                Number of sellers: <strong>{{ vinyl.sell_number }}</strong><br>
-                Lowest price of LP, USD: <strong>{{ vinyl.lowest_price }}</strong>
-            </div>
+<div class="container py-4 py-xl-5" style="align-content: center">
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col" style="margin-top: 30px" style="align-content: center">
+            <img class="border-info rounded fit-cover" style="width:415px;height:415px;"
+                 src="{{vinyl.image_url}}" alt="{{vinyl.album}}">
         </div>
-        <div class="align-content-center">
-            <div class="stars">
-                <form action="">
-                    <input class="star star-5" id="star-5" type="radio" name="star"/>
-                    <label class="star star-5" for="star-5"></label>
-                    <input class="star star-4" id="star-4" type="radio" name="star"/>
-                    <label class="star star-4" for="star-4"></label>
-                    <input class="star star-3" id="star-3" type="radio" name="star"/>
-                    <label class="star star-3" for="star-3"></label>
-                    <input class="star star-2" id="star-2" type="radio" name="star"/>
-                    <label class="star star-2" for="star-2"></label>
-                    <input class="star star-1" id="star-1" type="radio" name="star"/>
-                    <label class="star star-1" for="star-1"></label>
-                </form>
+        <div class="col-auto d-flex flex-column justify-content-center m-auto p-4" style="alignment: center">
+            <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+                <div>
+                    <h4>Artist: <strong>{{ vinyl.artist }}</strong>
+                        Album: <strong>{{ vinyl.album }}</strong><br></h4>
+                    Genres: <strong>{{ vinyl.genres }}</strong><br>
+                    Styles: <strong>{{ vinyl.styles }}</strong><br>
+                    Formats, quantity: <strong>{{ vinyl.formats }}</strong> (<strong>{{ vinyl.qty }}</strong>)<br>
+                    Label: <strong>{{ vinyl.label }}</strong><br>
+                    Catalogue number: <strong>{{ vinyl.catalogue_number }}</strong><br>
+                    Manufacture region: <strong>{{ vinyl.manufacture_region }}</strong><br>
+                    Year: <strong>{{ vinyl.year }}</strong><br>
+                    Notes: <strong>{{ vinyl.notes }}</strong><br>
+                    Average rating: <strong>{{ vinyl.average_rating }}</strong><br>
+                    Number of owners: <strong>{{ vinyl.owners_number }}</strong><br>
+                    Number of sellers: <strong>{{ vinyl.sell_number }}</strong><br>
+                    Lowest price of LP, USD: <strong>{{ vinyl.lowest_price }}</strong>
+                </div>
+                <div>
+                    <form action="">
+                        <input class="star star-5" id="star-5" type="radio" name="star"/>
+                        <label class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" name="star"/>
+                        <label class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" name="star"/>
+                        <label class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" name="star"/>
+                        <label class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" name="star"/>
+                        <label class="star star-1" for="star-1"></label>
+                    </form>
+                    <button onclick=""
+                            class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4">
+                        Edit LP's info
+                    </button>
+                    <button onclick="vinylDelete('{{vinyl.id}}', (data)=>{console.log(data)})"
+                            class="btn btn-outline-danger fs-5 border rounded border-danger shadow me-2 py-2 px-4">
+                        Delete
+                    </button>
+                </div>
             </div>
-        </div>
-        <div align="center">
-            <button onclick=""
-                    class="btn btn-light">EDIT LP's INFO
-            </button>
-            <button onclick="vinylDelete('{{vinyl.id}}', (data)=>{console.log(data)})"
-                    class="btn btn-outline-danger">DELETE
-            </button>
         </div>
     </div>
 </div>
-</div>
-
 <script type="text/javascript">
 
     function vinylDelete(vinylId, onSuccess, onError) {

@@ -1,32 +1,32 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<div class="row pt-5" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-     xmlns="http://www.w3.org/1999/html">
-    <h1 class="display-6 fw-bold mb-5">It's your&nbsp;<span class="underline">Collection</span>,
-        {{ user.username }}! You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your collection is
-        <strong>{{ total_coast }}$</strong></h1>
-</div>
-<div class="card-group row-cols-4">
+<div style="height: 550px;">
+<h4 class="text mb-3">It's your&nbsp;Collection,
+    <strong>{{ user.username }}</strong>! You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your
+    collection is
+    <strong>{{ total_coast }}$</strong></h4>
+<div class="card-group row-cols-6" style="margin-left: -60px;margin-right: -60px;">
     {% for vinyl in vinyls %}
-    <div>
+    <div class="col gx-5 gy-5">
         <form method="get" action="my_collection/">
             <label hidden>
                 <input name="vinyl_id" value="{{vinyl.id}}">
             </label>
             <button class="btn"><img src={{vinyl.image_url}} alt="img"
-                                                          style="width:200px;height:200px;"></button>
+                                     style="width:150px;height:150px;border-radius: 6px;"></button>
         </form>
         <h6 class="text">
             <strong>{{ vinyl.artist }}</strong>
         </h6>
         <h6 class="text">
-        {{ vinyl.album }}
+            {{ vinyl.album }}
         </h6>
     </div>
     {% endfor %}
 </div>
 <div>
     {% include "vinylcollector/pagination.html" with page=vinyls %}
+</div>
 </div>
 {% endblock %}
 

@@ -1,27 +1,16 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<body>
-<div class="row pt-5">
-    <div class="col-md-8 text-center text-md-start mx-auto">
-        <div class="text-center">
-            <h1 class="display-4 fw-bold mb-5">Let's add vinyl to your&nbsp;<span class="underline">Collection</span>.
-            </h1>
-            <p class="fs-5 text-muted mb-5"><span
-                                style="color: rgb(0, 0, 0);">
-                Please input info of your LP.</span>
-        </div>
-        <div class="text-center">
-            <div class="text-center position-relative"></div>
-            <form method="post" class="vinyl-form">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button class="btn btn-secondary" type="submit" href="/my_collection">Add vinyl</button>
-            </form>
-        </div>
+<h2 class="text mb-3">Let's add vinyl to your&nbsp;Collection</h2>
+<h3 class="text mb-3">Please input info of your LP</h3>
+<div class="text-center">
+    <div class="text-center position-relative">
+        <form method="post" class="vinyl-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4"
+                    type="submit" href="/my_collection">Add vinyl
+            </button>
+        </form>
     </div>
 </div>
-<div class="col-12 col-lg-10 mx-auto">
-    <div class="text-center position-relative"></div>
-</div>
-</body>
 {% endblock %}

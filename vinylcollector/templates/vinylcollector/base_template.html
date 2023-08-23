@@ -1,45 +1,73 @@
 {% load static %}
+<html lang="en"
+      style="background: url({% static 'assets/img/background.png' %}) center / cover no-repeat, rgb(198,198,198);--bs-primary: #fbd50c;--bs-primary-rgb: 251,213,12;">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> Vinyl collector</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <style>
-        body {
-            background-image: url("{% static 'img/background.png' %}");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: 100%;
-        }
-    </style>
+    <title>VinylCollector</title>
+    <link rel="stylesheet" href={% static 'assets/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href={% static 'assets/css/Navbar-Right-Links-icons.css' %}>
 </head>
 
-<body>
-    <nav class="navbar navbar-light fixed-top" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="/"><span>VINYL COLLECTOR</span></a>
-            <div class="navbar-expand-xl">
-                <ul class="navbar-nav">
-                    {% if user.is_authenticated %}
-                    <li><a class="btn btn-outline-secondary" href="/search" style="border: 0; color: 0;">Search &amp; Add Vinyl</a></li>
-                    <li><a class="btn btn-outline-secondary" href="/my_collection" style="border: 0; color: 0;" align="center">My collection</a></li>
-                    {% else %}
-                    <li><a class="btn btn-outline-secondary" href="/search" style="border: 0; color: 0;">Search vinyl</a></li>
-                    <li><a class="btn btn-outline-secondary" href="/registration" style="border: 0; color: 0;">Registration</a></li>
-                    {% endif %}
-                    {% if user.is_authenticated %}
-                    <li><a class="btn btn-light" style="border: 0; color: 0;" href="/logout/">LOG OUT</a></li>
-                    {% else %}
-                    <li><a class="btn btn-light" style="border: 0; color: 0;" href="/login/">LOG IN</a></li>
-                    {% endif %}
-                    </ul>
+<body style="background: rgb(255,255,255,0);">
+<nav class="navbar navbar-light navbar-expand-md py-3" style="background: rgb(255,255,255);">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span
+            class="bs-icon-xs bs-icon-circle bs-icon-primary text-bg-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg
+            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+            class="bi bi-vinyl">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                        <path d="M8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM4 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0z"></path>
+                        <path d="M9 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
+                    </svg></span><span><strong>VINYL COLLECTOR</strong></span></a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span
+                class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse text-center d-lg-flex" id="navcol-2">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+                <li class="nav-item"></li>
+            </ul>
+            {% if user.is_authenticated %}<a class="btn btn-secondary border rounded shadow-sm ms-md-2" role="button"
+                                             href="/search">Search & Add Vinyl</a><a
+                class="btn btn-secondary border rounded shadow-sm ms-md-2" role="button" href="/my_collection">My
+            Collection</a>
+            <a class="btn btn-outline-primary border rounded shadow-sm ms-md-2" role="button" href="/logout/">LOG
+                OUT</a>
+            {% else %}
+            <a class="btn btn-secondary border rounded shadow-sm ms-md-2" role="button"
+               href="/search">Search Vinyl</a><a
+                class="btn btn-secondary border rounded shadow-sm ms-md-2" role="button"
+                href="/registration">Registration</a>
+            <a class="btn btn-outline-primary border rounded shadow-sm ms-md-2" role="button" href="/login/">LOG IN</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+{% if message %}
+<section class="py-4 py-xl-5" style="height: 40px;">
+    <div class="container">
+        <div class="bg-light border rounded border-0 border-light d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5" style="height: 80px;position: relative;display: block;">
+            <div class="pb-2 pb-lg-1">
+                <h4 class="fw mb-2" style="margin-top: -15px;text-align: left;">{{message}}</h4>
+            </div>
+            <div class="my-2"></div>
+        </div>
+    </div>
+</section>
+{% endif %}
+<section class="py-4 py-xl-5" style="height: 550px;">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center align-self-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
+                <div>
+                    {% block content %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
-    </nav>
-        <div class="container pt-1" align="center">
-            <br>
-            <br>
-            {% block content %}
-            {% endblock %}
-        </div>
+    </div>
+</section>
+<script src='{% static "assets/bootstrap/js/bootstrap.min.js" %}'></script>
 </body>
+</html>

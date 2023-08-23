@@ -9,12 +9,11 @@ from captcha.widgets import ReCaptchaV2Checkbox
 
 
 class UserRegisterForm(UserCreationForm):
-
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ('email',)
 
     recaptcha = ReCaptchaField(widget=ReCaptchaV2Checkbox, public_key=settings.RECAPTCHA_PUBLIC_KEY,
-                               private_key=settings.RECAPTCHA_PRIVATE_KEY, label='ReCAPTCHA')
+                               private_key=settings.RECAPTCHA_PRIVATE_KEY, label=False)
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
