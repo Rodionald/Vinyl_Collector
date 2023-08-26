@@ -5,21 +5,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>VinylCollector</title>
+    <title>Vinyl Collector</title>
     <link rel="stylesheet" href={% static 'assets/bootstrap/css/bootstrap.min.css' %}>
     <link rel="stylesheet" href={% static 'assets/css/Navbar-Right-Links-icons.css' %}>
+    <link rel="shortcut icon" type="image/x-icon" href={% static 'favicon/favicon.ico' %}>
+    <link rel="apple-touch-icon" sizes="180x180" href={% static 'favicon/apple-touch-icon.png' %}>
+    <link rel="icon" type="image/png" sizes="32x32" href={% static 'favicon/favicon-32x32.png' %}>
+    <link rel="icon" type="image/png" sizes="16x16" href={% static 'favicon/favicon-16x16.png' %}>
+    <link rel="icon" type="image/png" sizes="192x192" href={% static 'favicon/android-chrome-192x192.png' %}>
+    <link rel="icon" type="image/png" sizes="512x512" href={% static 'favicon/android-chrome-512x512.png' %}>
+    <link rel="manifest" href={% static 'favicon/site.webmanifest' %}>
 </head>
 
 <body style="background: rgb(255,255,255,0);">
 <nav class="navbar navbar-light navbar-expand-md py-3" style="background: rgb(255,255,255);">
-    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span
-            class="bs-icon-xs bs-icon-circle bs-icon-primary text-bg-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg
-            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
-            class="bi bi-vinyl">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
-                        <path d="M8 6a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM4 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0z"></path>
-                        <path d="M9 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path>
-                    </svg></span><span><strong>VINYL COLLECTOR</strong></span></a>
+    <div class="container">
+        <a href="/"><img src="{% static 'favicon/apple-touch-icon.png' %}" style="width: 35px;height: 35.188px;" /></a>
+        <a class="navbar-brand d-flex align-items-center" href="/"><span style="position: relative;"><strong>VINYL COLLECTOR</strong></span></a>
         <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span
                 class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse text-center d-lg-flex" id="navcol-2">
