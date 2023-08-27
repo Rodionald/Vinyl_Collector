@@ -32,7 +32,7 @@ class Search(View):
         vinyl = Vinyl(**vinyl_dict)
         vinyl.owner = request.user
         vinyl.save()
-        message = 'LP has been successfully added to your collection. You can search for another or see your collection.'
+        message = 'message'
         return render(request, 'vinylcollector/search_vinyl.html', {'message': message})
 
 
@@ -97,7 +97,8 @@ class VinylAddView(View):
         vinyl.owner = request.user
         vinyl.user_rating = request.POST.get("user_rating")
         vinyl.save()
-        return render(request, 'vinylcollector/my_collection.html')
+        message = 'message'
+        return render(request, 'vinylcollector/search_vinyl.html', {'message': message})
 
 
 class UserVinylCollectionView(View):

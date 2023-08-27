@@ -37,6 +37,19 @@ class VinylForm(ModelForm):
         model = Vinyl
         fields = ["artist", "album", "genres", "notes", "formats", "qty", "image", "user_rating"]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields['artist'].widget.attrs.update({"placeholder": 'Artist'})
+            self.fields['album'].widget.attrs.update({"placeholder": 'Album'})
+            self.fields['genres'].widget.attrs.update({"placeholder": 'Genres'})
+            self.fields['notes'].widget.attrs.update({"placeholder": 'Notes'})
+            self.fields['formats'].widget.attrs.update({"placeholder": 'Formats'})
+            self.fields['qty'].widget.attrs.update({"placeholder": 'Qty'})
+            self.fields['image'].widget.attrs.update({"placeholder": 'Image'})
+            self.fields['user_rating'].widget.attrs.update({"placeholder": 'User rating'})
+            self.fields[field].widget.attrs.update({"class": "form-control", "autocomplete": "off"})
+
 
 class DiscogsVinylForm(ModelForm):
     class Meta:

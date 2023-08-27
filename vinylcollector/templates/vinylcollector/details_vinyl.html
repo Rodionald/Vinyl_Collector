@@ -1,5 +1,6 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
+{% load i18n %}
 <div class="container py-4 py-xl-5">
     <div class="row row-cols-1 row-cols-md-2">
         <div class="col" style="margin-top: 30px">
@@ -9,20 +10,20 @@
         <div class="col-auto d-flex flex-column justify-content-center m-auto p-4">
             <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                 <div>
-                    <h4>Artist: <strong>{{ context.artist }}</strong>
-                        Album: <strong>{{ context.album }}</strong><br></h4>
-                    Genres: <strong>{{ context.genres }}</strong><br>
-                    Styles: <strong>{{ context.styles }}</strong><br>
-                    Formats, quantity: <strong>{{ context.formats }}</strong> (<strong>{{ context.qty }}</strong>)<br>
-                    Label: <strong>{{ context.label }}</strong><br>
-                    Catalogue number: <strong>{{ context.catalogue_number }}</strong><br>
-                    Manufacture region: <strong>{{ context.manufacture_region }}</strong><br>
-                    Year: <strong>{{ context.year }}</strong><br>
-                    Notes: <strong>{{ context.notes }}</strong><br>
-                    Average rating: <strong>{{ context.average_rating }}</strong><br>
-                    Number of owners: <strong>{{ context.owners_number }}</strong><br>
-                    Number of sellers: <strong>{{ context.sell_number }}</strong><br>
-                    Lowest price of LP, USD: <strong>{{ context.lowest_price }}</strong><br>
+                    <h4>{% translate "Artist" %}: <strong>{{ context.artist }}</strong>
+                        {% translate "Album" %}: <strong>{{ context.album }}</strong><br></h4>
+                    {% translate "Genres" %}: <strong>{{ context.genres }}</strong><br>
+                    {% translate "Styles" %}: <strong>{{ context.styles }}</strong><br>
+                    {% translate "Formats, quantity" %}: <strong>{{ context.formats }}</strong> (<strong>{{ context.qty }}</strong>)<br>
+                    {% translate "Label" %}: <strong>{{ context.label }}</strong><br>
+                    {% translate "Catalogue number" %}: <strong>{{ context.catalogue_number }}</strong><br>
+                    {% translate "Manufacture region" %}: <strong>{{ context.manufacture_region }}</strong><br>
+                    {% translate "Year" %}: <strong>{{ context.year }}</strong><br>
+                    {% translate "Notes" %}: <strong>{{ context.notes }}</strong><br>
+                    {% translate "Average rating" %}: <strong>{{ context.average_rating }}</strong><br>
+                    {% translate "Number of owners" %}: <strong>{{ context.owners_number }}</strong><br>
+                    {% translate "Number of sellers" %}: <strong>{{ context.sell_number }}</strong><br>
+                    {% translate "Lowest price of LP, $" %}: <strong>{{ context.lowest_price }}</strong><br>
                 </div>
                 <div style="margin-top: 10px">
                     {% if user.is_authenticated %}
@@ -32,7 +33,7 @@
                             <input name="context" value="{{context}}">
                         </label>
                         <button class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4"
-                                type="submit">Add to Collection
+                                type="submit">{% translate "Add to Collection" %}
                         </button>
                     </form>
                     {% endif %}

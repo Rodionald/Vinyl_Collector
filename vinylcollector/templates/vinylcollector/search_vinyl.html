@@ -1,24 +1,25 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
-<div><h1 class="text fw-bold mb-3">Let's search the info about yours LP</h1>
-    <h2 class="text mb-3">Type the vendor code of your LP</h2>
-    <h5 class="text mb-3"> NOTICE! For Russian LP, vendor code types in Russian language!</h5>
+{% load i18n %}
+<div><h1 class="text fw-bold mb-3">{% translate "Let's search the info about yours LP" %}</h1>
+    <h2 class="text mb-3">{% translate "Type the vendor code of your LP" %}</h2>
+    <h5 class="text mb-3">{% translate "NOTICE! For Russian LP, vendor code types in Russian language!" %}</h5>
 </div>
 <form class="d-flex justify-content-center flex-wrap" method="get">
     <div class="mb-3">
         <input class="form-control" name="vendor_code" id="vendor_code"
-               placeholder="input vendor code" style="border-radius: 6px;height: 48px;">
+               placeholder="{% translate "input vendor code" %}" style="border-radius: 6px;height: 48px;">
     </div>
     <div class="mb-3">
         <button class="btn btn-primary fs-5 border rounded border-secondary shadow me-2 py-2 px-4" type="submit">
-            Search
+            {% translate "Search" %}
         </button>
     </div>
 </form>
 {% if user.is_authenticated %}
-<h2 class="text mb-3">Or You can add vinyl Manually</h2>
-<a class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4" href="/add">Add
-    manually</a>
+<h2 class="text mb-3">{% translate "Or You can add vinyl manually" %}</h2>
+<a class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4" href="/add">
+    {% translate "Add manually" %}</a>
 {% endif %}
 <div class="col-12 col-lg-10 mx-auto">
     <div class="text-center position-relative"></div>

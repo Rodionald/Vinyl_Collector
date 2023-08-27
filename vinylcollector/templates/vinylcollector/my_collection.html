@@ -1,10 +1,10 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
+{% load i18n %}
 <div style="height: 550px;">
-<h4 class="text mb-3">It's your&nbsp;Collection,
-    <strong>{{ user.username }}</strong>! You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your
-    collection is
-    <strong>{{ total_coast }}$</strong></h4>
+<h4 class="text mb-3">{% translate "It's your Collection" %},
+    <strong>{{ user.username }}</strong>!{% blocktranslate %} You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your
+    collection is <strong>{{ total_coast }}$</strong>{% endblocktranslate %}</h4>
 <div class="card-group row-cols-6" style="margin-left: -60px;margin-right: -60px;">
     {% for vinyl in vinyls %}
     <div class="col gx-5 gy-5">
