@@ -1450,7 +1450,7 @@ msgstr "Введите штрих-код Вашей пластинки"
 
 #: vinylcollector/templates/vinylcollector/search_vinyl.html:6
 msgid "NOTICE! For Russian LP, vendor code types in Russian language!"
-msgstr "Важно! Для совестких пластинок, штрих-код вводится на русском языке!"
+msgstr "Важно! Для советских пластинок, штрих-код вводится на русском языке!"
 
 #: vinylcollector/templates/vinylcollector/search_vinyl.html:20
 msgid "Or You can add vinyl manually"
