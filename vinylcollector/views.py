@@ -103,12 +103,13 @@ class VinylSellView(View):
         sell_contact = request.POST.get('sell_contact')
         sell_condition = request.POST.get('sell_condition')
         sell_contact_info = request.POST.get('sell_contact_info')
+        vinyl_user = request.user
         description = f'Исполнитель: <b>{vinyl_artist}</b>\nАльбом: <b>{vinyl_album}</b>\nФормат издания (' \
                       f'количество): <b>{vinyl_formats} ({vinyl_qty})</b>\nРегион про' \
                       f'изводства: <b>{vinyl_manufacture_region}</b>\nГод издания: <b>{vinyl_year}</b>\nНаименьшая ' \
                       f'цена в интернете, $: <b>{vinyl_price}</b>\nСостояние: <b>{sell_condition}</b>\nЦена продавца, ' \
                       f'BYN: <b>{sell_price}</b>\nГород продажи: <b>{sell_city}</b>\nКонтактная информация: <b>' \
-                      f'{sell_contact_info} {sell_contact}</b> '
+                      f'{sell_contact_info} {sell_contact}</b>\nНик коллекционера: <b>{vinyl_user}</b> '
         url = f'https://api.telegram.org/bot{TG_TOKEN}/sendPhoto?chat_id={TG_CHAT_ID}&photo={vinyl_img}' \
               f'&caption={description}&parse_mode=HTML'
         print(requests.get(url).json())
