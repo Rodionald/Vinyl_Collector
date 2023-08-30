@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-27 14:08+0300\n"
+"POT-Creation-Date: 2023-08-30 10:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -597,7 +597,7 @@ msgid "Order"
 msgstr ""
 
 #: venv/lib/python3.11/site-packages/django/forms/formsets.py:496
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:89
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:61
 msgid "Delete"
 msgstr ""
 
@@ -1286,83 +1286,117 @@ msgstr "Поиск пластинки"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:13
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:55
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:12
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:27
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:18
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:13
 msgid "Artist"
 msgstr "Исполнитель"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:14
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:56
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:13
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:28
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:19
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:14
 msgid "Album"
 msgstr "Альбом"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:15
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:57
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:14
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:29
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:20
 msgid "Genres"
 msgstr "Жанр"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:16
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:58
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:15
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:30
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:21
 msgid "Styles"
 msgstr "Стиль"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:17
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:59
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:16
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:31
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:22
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:15
 msgid "Formats, quantity"
 msgstr "Формат издания, количество"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:18
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:60
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:17
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:32
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:23
 msgid "Label"
 msgstr "Лэйбл"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:19
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:61
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:18
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:33
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:24
 msgid "Catalogue number"
 msgstr "Номер по каталогу"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:20
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:62
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:19
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:34
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:25
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:16
 msgid "Manufacture region"
 msgstr "Регион производства"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:21
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:63
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:20
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:35
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:26
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:17
 msgid "Year"
 msgstr "Год"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:22
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:64
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:21
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:36
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:27
 msgid "Notes"
 msgstr "Примечание"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:23
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:65
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:22
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:37
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:30
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:18
 msgid "Average rating"
 msgstr "Средний рейтинг"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:24
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:66
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:23
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:38
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:31
 msgid "Number of owners"
 msgstr "Количество владельцев"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:25
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:67
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:24
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:39
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:32
 msgid "Number of sellers"
 msgstr "Количество в продаже"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:26
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:68
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:25
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:40
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:33
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:19
 msgid "Lowest price of LP, $"
 msgstr "Самая низкая цена в продаже, $"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl.html:36
+#: vinylcollector/templates/vinylcollector/details_vinyl.html:35
 msgid "Add to Collection"
 msgstr "Добавить в коллекцию"
 
-#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:85
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:7
+msgid "The LP info has been successfully edited"
+msgstr "Информация о пластинке была успешно отредактирована"
+
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:14
+msgid "The LP has been successfully put up for sale in our telegram channel"
+msgstr "Пластинка успешно выставлена на продажу в нашем телеграм-канале"
+
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:48
+#: vinylcollector/templates/vinylcollector/edit_vinyl.html:36
 msgid "Edit LP's info"
 msgstr "Редактировать"
+
+#: vinylcollector/templates/vinylcollector/details_vinyl_from_collection.html:56
+msgid "Sell the LP"
+msgstr "Продать"
 
 #: vinylcollector/templates/vinylcollector/empty_collection.html:6
 msgid "you have no <strong>LP's</strong> in your collection!"
@@ -1372,8 +1406,13 @@ msgstr "у Вас нет <strong>пластинок</strong> в Вашей ко�
 msgid "Let's add your first LP"
 msgstr "Давайте добавим Вашу первую пластинку"
 
+#: vinylcollector/templates/vinylcollector/empty_collection.html:13
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:18
+msgid "input vendor code"
+msgstr "введите штрих-код"
+
 #: vinylcollector/templates/vinylcollector/empty_collection.html:17
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:15
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:22
 msgid "Search"
 msgstr "Поиск"
 
@@ -1382,33 +1421,43 @@ msgid "Or You can add vinyl Manually"
 msgstr "Или Вы можете добавить пластинку вручную"
 
 #: vinylcollector/templates/vinylcollector/empty_collection.html:25
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:22
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:29
 msgid "Add manually"
 msgstr "Добавить вручную"
 
-#: vinylcollector/templates/vinylcollector/main.html:5
+#: vinylcollector/templates/vinylcollector/main.html:6
 msgid "Hello"
 msgstr "Привет"
 
-#: vinylcollector/templates/vinylcollector/main.html:7
+#: vinylcollector/templates/vinylcollector/main.html:8
 msgid "It's yours vinyl collection HOME"
 msgstr "Тут хранится Ваша коллекция ВИНИЛА"
 
-#: vinylcollector/templates/vinylcollector/main.html:8
+#: vinylcollector/templates/vinylcollector/main.html:9
 msgid "This app will help to save info about your LPs"
 msgstr "Это приложение поможет сохранить информацию о Вашей коллекции пластинок"
 
-#: vinylcollector/templates/vinylcollector/main.html:13
+#: vinylcollector/templates/vinylcollector/main.html:14
 msgid "SHOW COLLECTION"
 msgstr "ПОКАЗАТЬ КОЛЛЕКЦИЮ"
 
-#: vinylcollector/templates/vinylcollector/main.html:16
+#: vinylcollector/templates/vinylcollector/main.html:17
 msgid "SEARCH VINYL"
 msgstr "ПОИСК ПЛАСТИНКИ"
 
-#: vinylcollector/templates/vinylcollector/main.html:25
-msgid "Subscribe to my Instagram"
-msgstr "Подписывайтесь на мой Instagram"
+#: vinylcollector/templates/vinylcollector/main.html:27
+msgid "Subscribe to our social networks"
+msgstr "Подписывайтесь на наши социальные сети"
+
+#: vinylcollector/templates/vinylcollector/main.html:31
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:50
+msgid "Telegram"
+msgstr "Телеграм"
+
+#: vinylcollector/templates/vinylcollector/main.html:35
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:51
+msgid "Instagram"
+msgstr ""
 
 #: vinylcollector/templates/vinylcollector/my_collection.html:5
 msgid "It's your Collection"
@@ -1435,30 +1484,93 @@ msgstr "из"
 msgid "next"
 msgstr "вперед"
 
-#: vinylcollector/templates/vinylcollector/empty_collection.html:13
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:11
-msgid "input vendor code"
-msgstr "введите штрих-код"
-
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:4
-msgid "Let's search the info about yours LP"
-msgstr "Давайте найдем информацию о Ваших пластинках"
-
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:5
-msgid "Type the vendor code of your LP"
-msgstr "Введите штрих-код Вашей пластинки"
-
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:6
-msgid "NOTICE! For Russian LP, vendor code types in Russian language!"
-msgstr "Важно! Для советских пластинок, штрих-код вводится на русском языке!"
-
-#: vinylcollector/templates/vinylcollector/search_vinyl.html:20
-msgid "Or You can add vinyl manually"
-msgstr "или Вы можете добавить пластинку вручную"
-
-#: vinylcollector/templates/vinylcollector/base_template.html:53
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:7
 msgid ""
 "LP has been successfully added to your collection. Search for another or see "
 "your collection"
 msgstr ""
 "Пластинка успешно добавлена в Вашу коллекцию. Добавьте следующую или посмотрите Вашу коллекцию "
+
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:11
+msgid "Let's search the info about yours LP"
+msgstr "Давайте найдем информацию о Ваших пластинках"
+
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:12
+msgid "Type the vendor code of your LP"
+msgstr "Введите штрих-код Вашей пластинки"
+
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:13
+msgid "NOTICE! For Russian LP, vendor code types in Russian language!"
+msgstr "Важно! Для советских пластинок, штрих-код вводится на русском языке!"
+
+#: vinylcollector/templates/vinylcollector/search_vinyl.html:27
+msgid "Or You can add vinyl manually"
+msgstr "или Вы можете добавить пластинку вручную"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:26
+msgid "input your city or town"
+msgstr "введите город"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:29
+msgid "input price, BYN"
+msgstr "введите цену, BYN"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:34
+msgid "select condition of the LP"
+msgstr "выберите состояние пластинки"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:35
+msgid "S (Sealed)"
+msgstr "S (Запечатанная)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:36
+msgid "M (Mint)"
+msgstr "M (Идеальное)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:37
+msgid "NM (Near Mint)"
+msgstr "NM (Почти идеальное)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:38
+msgid "EX (Excellent)"
+msgstr "EX (Отличное)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:39
+msgid "VG (Very Good)"
+msgstr "VG (Очень хорошее)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:40
+msgid "G (Good)"
+msgstr "G (Хорошее)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:41
+msgid "F (Fair)"
+msgstr "F (Посредственное)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:42
+msgid "P (Poor)"
+msgstr "P (Плохое)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:43
+msgid "B (Bad)"
+msgstr "B (Всё совсем плохо)"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:48
+msgid "select the way to contact"
+msgstr "выберите предпочитаемый способ связи"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:49
+msgid "Phone"
+msgstr "Телефон"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:52
+msgid "Email"
+msgstr ""
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:56
+msgid "input your contact"
+msgstr "введите контактную информацию"
+
+#: vinylcollector/templates/vinylcollector/sell_vinyl.html:71
+msgid "Sell this LP"
+msgstr "Продать пластинку"

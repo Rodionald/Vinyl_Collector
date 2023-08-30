@@ -5,7 +5,7 @@
 <h4 class="text mb-3">{% translate "It's your Collection" %},
     <strong>{{ user.username }}</strong>!{% blocktranslate %} You have <strong>{{ qty_vinyl }}</strong> LP's, the lowest price of your
     collection is <strong>{{ total_coast }}$</strong>{% endblocktranslate %}</h4>
-<div class="card-group row-cols-6" style="margin-left: -60px;margin-right: -60px;">
+<div class="card-group row-cols-lg-6" style="margin-left: -30px;margin-right: -30px;">
     {% for vinyl in vinyls %}
     <div class="col gx-5 gy-5">
         <form method="get" action="my_collection/">
@@ -13,7 +13,7 @@
                 <input name="vinyl_id" value="{{vinyl.id}}">
             </label>
             <button class="btn"><img src={{vinyl.image_url}} alt="img"
-                                     style="width:150px;height:150px;border-radius: 6px;"></button>
+                                     style="width:130px;height:130px;border-radius: 6px;"></button>
         </form>
         <h6 class="text">
             <strong>{{ vinyl.artist }}</strong>

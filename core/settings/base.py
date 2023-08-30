@@ -28,6 +28,8 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
+TG_TOKEN = env('TG_TOKEN')
+TG_CHAT_ID = env('TG_CHAT_ID')
 
 ALLOWED_HOSTS = ['*']
 

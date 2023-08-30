@@ -1,13 +1,12 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
 {% load i18n %}
-<div class="container py-4 py-xl-5">
-    <div class="row row-cols-1 row-cols-md-2">
+    <div class="row row-cols-xxl-2">
         <div class="col" style="margin-top: 30px">
-            <img class="border-info rounded fit-cover" style="width:415px;height:415px;"
+            <img class="border-info rounded fit-cover" style="width:350px;height:350px;"
                  src="{{context.image_url}}" alt="{{context.album}}">
         </div>
-        <div class="col-auto d-flex flex-column justify-content-center m-auto p-4">
+        <div class="col">
             <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                 <div>
                     <h4>{% translate "Artist" %}: <strong>{{ context.artist }}</strong>
@@ -41,5 +40,4 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}

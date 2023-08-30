@@ -2,11 +2,13 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Sum, Count
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from core.settings.base import TG_TOKEN, TG_CHAT_ID
 from vinyl.vinyl import *
 from vinylcollector.forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+import requests
 
 
 class MainPage(View):
@@ -52,6 +54,11 @@ class VinylFromCollectionView(View):
             return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl})
         return render(request, 'vinylcollector/my_collection.html')
 
+    @staticmethod
+    def post(request, *args, **kwargs):
+        """star rating"""
+        pass
+
 
 class VinylView(View):
 
@@ -69,6 +76,67 @@ class VinylView(View):
     @staticmethod
     def post(request, *args, **kwargs):
         return render(request, 'vinylcollector/successfully_added.html')
+
+
+class VinylSellView(View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        if request.GET.get('vinyl_id'):
+            vinyl_id = request.GET.get('vinyl_id')
+            vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+            return render(request, 'vinylcollector/sell_vinyl.html', {'vinyl': vinyl})
+        return render(request, 'vinylcollector/main.html')
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        vinyl_img = request.POST.get('vinyl_img')
+        vinyl_artist = request.POST.get('vinyl_artist')
+        vinyl_album = request.POST.get('vinyl_album')
+        vinyl_price = request.POST.get('vinyl_price')
+        vinyl_formats = request.POST.get('vinyl_formats')
+        vinyl_qty = request.POST.get('vinyl_qty')
+        vinyl_manufacture_region = request.POST.get('vinyl_manufacture_region')
+        vinyl_year = request.POST.get('vinyl_year')
+        sell_city = request.POST.get('sell_city')
+        sell_price = request.POST.get('sell_price')
+        sell_contact = request.POST.get('sell_contact')
+        sell_condition = request.POST.get('sell_condition')
+        sell_contact_info = request.POST.get('sell_contact_info')
+        description = f'Исполнитель: <b>{vinyl_artist}</b>\nАльбом: <b>{vinyl_album}</b>\nФормат издания (' \
+                      f'количество): <b>{vinyl_formats} ({vinyl_qty})</b>\nРегион про' \
+                      f'изводства: <b>{vinyl_manufacture_region}</b>\nГод издания: <b>{vinyl_year}</b>\nНаименьшая ' \
+                      f'цена в интернете, $: <b>{vinyl_price}</b>\nСостояние: <b>{sell_condition}</b>\nЦена продавца, ' \
+                      f'BYN: <b>{sell_price}</b>\nГород продажи: <b>{sell_city}</b>\nКонтактная информация: <b>' \
+                      f'{sell_contact_info} {sell_contact}</b> '
+        url = f'https://api.telegram.org/bot{TG_TOKEN}/sendPhoto?chat_id={TG_CHAT_ID}&photo={vinyl_img}' \
+              f'&caption={description}&parse_mode=HTML'
+        print(requests.get(url).json())
+        message = 'sell'
+        vinyl_id = request.POST.get('vinyl_id')
+        vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+        return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl, 'message': message})
+
+
+class VinylEditView(View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        if request.GET.get('vinyl_id'):
+            vinyl_id = request.GET.get('vinyl_id')
+            vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+            return render(request, 'vinylcollector/edit_vinyl.html', {'vinyl': vinyl})
+        return render(request, 'vinylcollector/main.html')
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        vinyl_notes = request.POST.get('vinyl_notes')
+        vinyl_id = request.POST.get('vinyl_id')
+        vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+        vinyl.notes = vinyl_notes
+        vinyl.save()
+        message = 'edit'
+        return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl, 'message': message})
 
 
 class VinylAddView(View):

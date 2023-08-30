@@ -1,7 +1,14 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
 {% load i18n %}
-<div><h1 class="text fw-bold mb-3">{% translate "Let's search the info about yours LP" %}</h1>
+{% if message %}
+<section class="py-4 py-xl-5" style="height: 40px;margin-top: -40px">
+        <div class="bg-light border rounded border-0 border-light d-flex flex-column flex-lg-row" style="position: relative;display: block;">
+                <h4 class="fw mb-2" style="text-align: center;">{% translate "LP has been successfully added to your collection. Search for another or see your collection" %}</h4>
+        </div>
+</section>
+{% endif %}
+<div style="margin-top: 70px"><h1 class="text fw-bold mb-3">{% translate "Let's search the info about yours LP" %}</h1>
     <h2 class="text mb-3">{% translate "Type the vendor code of your LP" %}</h2>
     <h5 class="text mb-3">{% translate "NOTICE! For Russian LP, vendor code types in Russian language!" %}</h5>
 </div>

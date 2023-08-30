@@ -10,4 +10,6 @@ urlpatterns = [
     path('registration', SignUpView.as_view(), name='registration'),
     path('search/', VinylView.as_view(), name='vinyl_details'),
     path('add', VinylAddView.as_view(), name='vinyl_add'),
+    path('sell_vinyl/', VinylSellView.as_view()),
+    path('edit_vinyl/', VinylEditView.as_view()),
 ]
