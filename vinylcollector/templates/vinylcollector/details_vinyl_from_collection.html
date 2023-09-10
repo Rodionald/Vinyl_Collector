@@ -11,14 +11,14 @@
 {% if message == 'sell' %}
 <section class="py-4 py-xl-5" style="height: 40px;margin-top: -40px;">
         <div class="bg-light border rounded border-0 border-light d-flex flex-column flex-lg-row text-center" style="position: relative;display: block;">
-                <h4 class="fw mb-2" style="text-align: center;">{% translate "The LP has been successfully put up for sale in our telegram channel" %}</h4>
+                <h4 class="fw mb-2" style="text-align: center;">{% translate "The LP has been successfully put up for sale in our " %}<a class="text mb-3" href="https://t.me/vinyl_collector">{% translate "telegram channel" %}</a></h4>
         </div>
 </section>
 {% endif %}
 <div class="container py-4 py-xl-5" style="align-content: center;height: 550px;margin-top: -40px;">
     <div class="row row-cols-1 row-cols-md-2">
-        <div class="col" style="margin-top: 30px" style="align-content: center">
-            <img class="border-info rounded fit-cover" style="width:350px;height:350px;"
+        <div class="col-auto d-flex flex-column" style="alignment: center;margin-top: 30px">
+            <img class="border-info rounded fit-cover" style="max-width:500px;max-height:500px;min-width:330px;min-height:330px;"
                  src="{{vinyl.image_url}}" alt="{{vinyl.album}}">
         </div>
         <div class="col-auto d-flex flex-column justify-content-center m-auto p-4" style="alignment: center">
@@ -55,6 +55,9 @@
                         <button class="btn btn-primary fs-5 border rounded border-secondary shadow me-2 py-2 px-4">
                             {% translate "Sell the LP" %}
                         </button>
+                        <a class="btn btn-light fs-5 rounded shadow me-2 py-2 px-4"
+                                href="/info_sell">{% translate "How to sell LP" %}?
+                        </a>
                     </form>
                     <button onclick="vinylDelete('{{vinyl.id}}', (data)=>{console.log(data)})"
                             class="btn btn-outline-danger fs-5 border rounded border-danger shadow me-2 py-2 px-4">

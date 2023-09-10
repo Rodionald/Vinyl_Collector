@@ -8,7 +8,7 @@
         </div>
 </section>
 {% endif %}
-<div style="margin-top: 70px"><h1 class="text fw-bold mb-3">{% translate "Let's search the info about yours LP" %}</h1>
+<div style="margin-top: 90px"><h1 class="text fw-bold mb-3">{% translate "Let's search the info about yours LP" %}</h1>
     <h2 class="text mb-3">{% translate "Type the vendor code of your LP" %}</h2>
     <h5 class="text mb-3">{% translate "NOTICE! For Russian LP, vendor code types in Russian language!" %}</h5>
 </div>
@@ -23,12 +23,14 @@
         </button>
     </div>
 </form>
+<div style="margin-top: -25px">
+            <a class="text mb-3" href="/info">{% translate "what is the vendor code" %}?</a>
+</div>
 {% if user.is_authenticated %}
+<div style="margin-top: 25px">
 <h2 class="text mb-3">{% translate "Or You can add vinyl manually" %}</h2>
 <a class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4" href="/add">
     {% translate "Add manually" %}</a>
-{% endif %}
-<div class="col-12 col-lg-10 mx-auto">
-    <div class="text-center position-relative"></div>
 </div>
+{% endif %}
 {% endblock %}

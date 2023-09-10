@@ -1,7 +1,7 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
 {% load i18n %}
-<div style="height: 500px">
+<div class="col-auto d-flex flex-column" style="max-width: 900px">
     <h2 class="text fw-bold mb-3">{% translate "Join, for creating your own Collection" %}</h2>
     <form method="post">
         {% csrf_token %}

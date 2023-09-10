@@ -5,7 +5,6 @@ from django.views import View
 from core.settings.base import TG_TOKEN, TG_CHAT_ID
 from vinyl.vinyl import *
 from vinylcollector.forms import *
-from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 import requests
@@ -16,6 +15,28 @@ class MainPage(View):
     @staticmethod
     def get(request, *args, **kwargs):
         return render(request, 'vinylcollector/main.html')
+
+
+class InfoPage(View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        return render(request, 'vinylcollector/info.html')
+
+
+class InfoSellPage(View):
+
+    @staticmethod
+    def get(request, *args, **kwargs):
+        vinyl_id = request.GET.get('vinyl_id')
+        return render(request, 'vinylcollector/info_sell.html', {'vinyl_id': vinyl_id, })
+
+    @staticmethod
+    def post(request, *args, **kwargs):
+        vinyl_id = request.POST.get('vinyl_id')
+        vinyl = get_object_or_404(Vinyl, id=vinyl_id)
+        return render(request, 'vinylcollector/details_vinyl_from_collection.html',
+                      {'vinyl': vinyl, })
 
 
 class Search(View):
@@ -116,7 +137,8 @@ class VinylSellView(View):
         message = 'sell'
         vinyl_id = request.POST.get('vinyl_id')
         vinyl = get_object_or_404(Vinyl, id=vinyl_id)
-        return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl, 'message': message})
+        return render(request, 'vinylcollector/details_vinyl_from_collection.html',
+                      {'vinyl': vinyl, 'message': message})
 
 
 class VinylEditView(View):
@@ -137,7 +159,8 @@ class VinylEditView(View):
         vinyl.notes = vinyl_notes
         vinyl.save()
         message = 'edit'
-        return render(request, 'vinylcollector/details_vinyl_from_collection.html', {'vinyl': vinyl, 'message': message})
+        return render(request, 'vinylcollector/details_vinyl_from_collection.html',
+                      {'vinyl': vinyl, 'message': message})
 
 
 class VinylAddView(View):
@@ -195,4 +218,3 @@ class UserVinylCollectionView(View):
                 vinyls = paginator.page(paginator.num_pages)
             return render(request, 'vinylcollector/my_collection.html',
                           {'page': page, 'vinyls': vinyls, 'qty_vinyl': qty_vinyl, 'total_coast': total_coast})
-

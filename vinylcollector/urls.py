@@ -12,4 +12,6 @@ urlpatterns = [
     path('add', VinylAddView.as_view(), name='vinyl_add'),
     path('sell_vinyl/', VinylSellView.as_view()),
     path('edit_vinyl/', VinylEditView.as_view()),
+    path('info', InfoPage.as_view()),
+    path('info_sell', InfoSellPage.as_view()),
 ]
