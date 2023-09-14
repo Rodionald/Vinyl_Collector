@@ -14,4 +14,5 @@ urlpatterns = [
     path('edit_vinyl/', VinylEditView.as_view()),
     path('info', InfoPage.as_view()),
     path('info_sell', InfoSellPage.as_view()),
+    path("password_reset/", UserResetPasswordView.as_view(), name="password_reset")
 ]

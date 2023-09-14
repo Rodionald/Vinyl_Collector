@@ -1,16 +1,52 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
+{% load static %}
 {% load i18n %}
 <h2 class="text mb-3">{% translate "Let's add vinyl to your Collection" %}</h2>
 <h3 class="text mb-3">{% translate "Please input info of your LP" %}</h3>
 <div class="col-auto d-flex flex-column" style="max-width: 900px">
-    <div class="text-center position-relative">
-        <form method="post" class="vinyl-form rounded">
+    <div>
+        <form method="post" class="form-group" style="max-width: 600px;text-align: left">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4"
-                    type="submit" href="/my_collection">{% translate "Add vinyl" %}
-            </button>
+            <div>
+                <h5><span style="color: red">*</span> {% translate "Artist" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Artist" %}" {{ form.artist }}</div>
+            <div style="margin-top: 10px">
+                <h5><span style="color: red">*</span> {% translate "Album" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Album" %}" {{ form.album }}</div>
+            <div style="margin-top: 10px">
+                <h5>{% translate "Genres" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Genres" %}" {{ form.genres }}</div>
+            <div style="margin-top: 10px">
+                <h5>{% translate "Notes" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Notes" %}" {{ form.notes }}</div>
+            <div style="margin-top: 10px">
+                <h5><span style="color: red">*</span> {% translate "Formats" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Formats" %}" required {{ form.formats }}</div>
+            <div style="margin-top: 10px">
+                <h5><span style="color: red">*</span> {% translate "Quantity" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Quantity" %}" required {{ form.qty }}</div>
+            <div style="margin-top: 10px">
+                <h5>{% translate "Manufacture region" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Manufacture region" %}" {{ form.manufacture_region }}</div>
+            <div style="margin-top: 10px">
+                <h5>{% translate "Label" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Label" %}" {{ form.label }}</div>
+            <div style="margin-top: 10px">
+                <h5>{% translate "Year" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "Year" %}" {{ form.year }}</div>
+            <div style="margin-top: 10px">
+                <h5>{% translate "User rating" %}</h5>
+            <input style="border-radius: 6px;" placeholder="{% translate "User rating" %}" {{ form.user_rating }}</div>
+            <div align="center">
+                <button class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4"
+                        type="submit" href="/my_collection" style="margin-top: 15px">{% translate "Add vinyl" %}
+                </button>
+                <button class="btn btn-light fs-5 rounded shadow py-2 px-4"
+                        onclick="javascript:history.back(); return false;" type="submit"
+                        style="margin-top: 15px">{% translate "Back to Search" %}
+                </button>
+            </div>
         </form>
     </div>
 </div>

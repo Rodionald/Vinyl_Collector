@@ -1,6 +1,20 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
 {% load i18n %}
+{% if context.release == 'not specified' %}
+<div class="col d-flex flex-column" style="margin-top: 30px; max-width: 450px" align="center">
+    <img class="border-info rounded fit-cover"
+         style="max-width:500px;max-height:500px;min-width:330px;min-height:330px;"
+         src="{{context.image_url}}" alt="{{context.album}}">
+    <h3>{% translate "The info about this LP is not found" %}</h3>
+    <div align="center">
+        <button class="btn btn-light fs-5 rounded shadow me-2 py-2 px-4"
+                onclick="javascript:history.back(); return false;" type="submit"
+                style="margin-top: 15px;max-width: 250px">{% translate "Back to Search" %}
+        </button>
+    </div>
+</div>
+{% else %}
     <div class="row row-cols-1 row-cols-md-2">
         <div class="col-auto d-flex flex-column" style="alignment: center;margin-top: 30px">
             <img class="border-info rounded fit-cover" style="max-width:500px;max-height:500px;min-width:330px;min-height:330px;"
@@ -25,7 +39,6 @@
                     {% translate "Lowest price of LP, $" %}: <strong>{{ context.lowest_price }}</strong><br>
                 </div>
                 <div style="margin-top: 10px">
-                    {% if context.release != 'not specified' %}
                     {% if user.is_authenticated %}
                     <form method="post">
                         {% csrf_token %}

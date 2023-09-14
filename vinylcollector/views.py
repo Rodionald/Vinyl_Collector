@@ -1,8 +1,9 @@
+from django.contrib.auth.views import PasswordResetView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Sum, Count
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from core.settings.base import TG_TOKEN, TG_CHAT_ID
+from core.settings.base import TG_TOKEN, TG_CHAT_ID, IMG_LP_URL
 from vinyl.vinyl import *
 from vinylcollector.forms import *
 from django.urls import reverse_lazy
@@ -33,10 +34,7 @@ class InfoSellPage(View):
 
     @staticmethod
     def post(request, *args, **kwargs):
-        vinyl_id = request.POST.get('vinyl_id')
-        vinyl = get_object_or_404(Vinyl, id=vinyl_id)
-        return render(request, 'vinylcollector/details_vinyl_from_collection.html',
-                      {'vinyl': vinyl, })
+        pass
 
 
 class Search(View):
@@ -63,6 +61,10 @@ class SignUpView(generic.CreateView):
     form_class = UserRegisterForm
     success_url = reverse_lazy('login')
     template_name = 'registration/registration.html'
+
+
+class UserResetPasswordView(PasswordResetView):
+    form_class = UserResetPasswordForm
 
 
 class VinylFromCollectionView(View):
@@ -115,6 +117,8 @@ class VinylSellView(View):
         vinyl_artist = request.POST.get('vinyl_artist')
         vinyl_album = request.POST.get('vinyl_album')
         vinyl_price = request.POST.get('vinyl_price')
+        if vinyl_price == 'None':
+            vinyl_price = 'не указана'
         vinyl_formats = request.POST.get('vinyl_formats')
         vinyl_qty = request.POST.get('vinyl_qty')
         vinyl_manufacture_region = request.POST.get('vinyl_manufacture_region')
@@ -177,17 +181,33 @@ class VinylAddView(View):
         vinyl.artist = request.POST.get("artist")
         vinyl.album = request.POST.get("album")
         vinyl.genres = request.POST.get("genres")
+        if request.POST.get("genres") == '':
+            vinyl.genres = 'not specified'
         vinyl.styles = request.POST.get("styles")
+        if request.POST.get("styles") is None:
+            vinyl.styles = 'not specified'
         vinyl.notes = request.POST.get("notes")
+        if request.POST.get("notes") == '':
+            vinyl.notes = 'not specified'
         vinyl.formats = request.POST.get("formats")
         vinyl.qty = request.POST.get("qty")
         vinyl.manufacture_region = request.POST.get("manufacture_region")
+        if request.POST.get("manufacture_region") == '':
+            vinyl.manufacture_region = 'not specified'
         vinyl.label = request.POST.get("label")
+        if request.POST.get("label") == '':
+            vinyl.label = 'not specified'
         vinyl.catalogue_number = request.POST.get("catalogue_number")
+        if request.POST.get("catalogue_number") is None:
+            vinyl.catalogue_number = 'not specified'
         vinyl.year = request.POST.get("year")
-        vinyl.image_url = request.POST.get("image_url")
+        if request.POST.get("year") == '':
+            vinyl.year = 'not specified'
+        if request.POST.get("catalogue_number") == '':
+            vinyl.catalogue_number = 'not specified'
+        vinyl.image_url = IMG_LP_URL
         vinyl.owner = request.user
-        vinyl.user_rating = request.POST.get("user_rating")
+        vinyl.user_rating = request.POST.get("user_rating", 'not specified')
         vinyl.save()
         message = 'message'
         return render(request, 'vinylcollector/search_vinyl.html', {'message': message})

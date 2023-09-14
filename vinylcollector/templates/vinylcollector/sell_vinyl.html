@@ -19,18 +19,18 @@
                     {% translate "Lowest price of LP, $" %}: <strong>{{ vinyl.lowest_price }}</strong>
                 </div>
                 <div>
-                    <form method="post">
+                    <form method="post" style="margin-top: 15px">
                         {% csrf_token %}
                         <label for="sell_city"></label>
-                        <input class="form-control border rounded shadow py-2 px-4" name="sell_city" id="sell_city"
+                        <input required class="form-control border rounded shadow py-2 px-4" name="sell_city" id="sell_city"
                                placeholder="{% translate "input your city or town" %}" style="margin-bottom: 2px">
-                        <label for="sell_price"></label><input class="form-control border rounded shadow py-2 px-4"
+                        <label for="sell_price"></label><input required class="form-control border rounded shadow py-2 px-4"
                                                                name="sell_price" id="sell_price"
                                                                placeholder="{% translate "input price, BYN" %}"
                         style="margin-bottom: 2px">
                         <label for="sell_condition"></label>
                         <select class="form-control border rounded shadow py-2 px-4" name="sell_condition"
-                                id="sell_condition" style="margin-bottom: 2px">
+                                id="sell_condition" style="margin-bottom: 2px" required>
                             <option value="">{% translate "select condition of the LP" %}:</option>
                             <option value="{% translate "S (Sealed)" %}">{% translate "S (Sealed)" %}</option>
                             <option value="{% translate "M (Mint)" %}">{% translate "M (Mint)" %}</option>
@@ -44,14 +44,14 @@
                         </select>
                         <label for="sell_contact_info"></label>
                         <select class="form-control border rounded shadow py-2 px-4" name="sell_contact_info"
-                                id="sell_contact_info" style="margin-bottom: 2px">
+                                id="sell_contact_info" style="margin-bottom: 2px" required>
                             <option value="">{% translate "select the way to contact" %}:</option>
                             <option value="{% translate "Phone" %}">{% translate "Phone" %}</option>
                             <option value="{% translate "Telegram" %}">{% translate "Telegram" %}</option>
                             <option value="{% translate "Instagram" %}">{% translate "Instagram" %}</option>
                             <option value="{% translate "Email" %}">{% translate "Email" %}</option>
                         </select>
-                        <label for="sell_contact"></label><input class="form-control border rounded shadow py-2 px-4"
+                        <label for="sell_contact"></label><input required class="form-control border rounded shadow py-2 px-4"
                                                                  name="sell_contact" id="sell_contact"
                                                                  placeholder="{% translate "input your contact" %}"
                         style="margin-bottom: 5px">
@@ -65,6 +65,7 @@
                             <input name="vinyl_qty" value="{{vinyl.qty}}">
                             <input name="vinyl_manufacture_region" value="{{vinyl.manufacture_region}}">
                             <input name="vinyl_year" value="{{vinyl.year}}">
+                            <input name="vinyl" value="{{vinyl}}">
                         </label>
                         <div>
                             <button class="btn btn-primary fs-5 border rounded border-secondary shadow me-2 py-2 px-4"

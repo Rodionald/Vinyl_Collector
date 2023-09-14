@@ -2,9 +2,11 @@
 {% block content %}
 {% load i18n %}
 {% if message %}
-<section class="py-4 py-xl-5" style="height: 40px;margin-top: -40px">
+<section class="py-4 py-xl-5" style="height: 40px;margin-top: -40px;">
         <div class="bg-light border rounded border-0 border-light d-flex flex-column flex-lg-row" style="position: relative;display: block;">
-                <h4 class="fw mb-2" style="text-align: center;">{% translate "LP has been successfully added to your collection. Search for another or see your collection" %}</h4>
+            <div style="alignment: center">
+                <h4 class="fw mb-2">{% translate "LP has been successfully added to your collection. Search for another or see your collection" %}</h4>
+            </div>
         </div>
 </section>
 {% endif %}

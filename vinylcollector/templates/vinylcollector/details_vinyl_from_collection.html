@@ -11,7 +11,7 @@
 {% if message == 'sell' %}
 <section class="py-4 py-xl-5" style="height: 40px;margin-top: -40px;">
         <div class="bg-light border rounded border-0 border-light d-flex flex-column flex-lg-row text-center" style="position: relative;display: block;">
-                <h4 class="fw mb-2" style="text-align: center;">{% translate "The LP has been successfully put up for sale in our " %}<a class="text mb-3" href="https://t.me/vinyl_collector">{% translate "telegram channel" %}</a></h4>
+                <h4 class="fw mb-2" style="text-align: center;">{% translate "The LP has been sent for moderation before publication in our " %}<a class="text mb-3" href="https://t.me/vinyl_collector">{% translate "telegram channel" %}</a></h4>
         </div>
 </section>
 {% endif %}
@@ -34,35 +34,38 @@
                     {% translate "Manufacture region" %}: <strong>{{ vinyl.manufacture_region }}</strong><br>
                     {% translate "Year" %}: <strong>{{ vinyl.year }}</strong><br>
                     {% translate "Notes" %}: <strong>{{ vinyl.notes }}</strong><br>
+                    {% if vinyl.average_rating %}
                     {% translate "Average rating" %}: <strong>{{ vinyl.average_rating }}</strong><br>
                     {% translate "Number of owners" %}: <strong>{{ vinyl.owners_number }}</strong><br>
                     {% translate "Number of sellers" %}: <strong>{{ vinyl.sell_number }}</strong><br>
                     {% translate "Lowest price of LP, $" %}: <strong>{{ vinyl.lowest_price }}</strong>
+                    {% endif %}
                 </div>
                 <div class="col-auto justify-content-center p-1" style="margin-top: 10px;">
-                    <form method="get" action="/edit_vinyl/">
+                    <form method="get" action="/edit_vinyl/" style="margin-top: 10px">
                         <label hidden>
                             <input name="vinyl_id" value="{{vinyl.id}}">
                         </label>
-                        <button class="btn btn-outline-light fs-5 bg-secondary border rounded border-secondary shadow py-2 px-4">
+                        <button class="btn btn-outline-light fs-6 bg-secondary border rounded border-secondary shadow py-2 px-4">
                             {% translate "Edit LP's info" %}
                         </button>
                     </form>
-                    <form method="get" action="/sell_vinyl/">
+                    <div style="margin-top: 10px">
+                    <button onclick="vinylDelete('{{vinyl.id}}', (data)=>{console.log(data)});" class="btn btn-outline-danger fs-6 border rounded border-danger shadow me-2 py-2 px-4">
+                            {% translate "Delete" %}
+                    </button>
+                    </div>
+                    <form method="get" action="/sell_vinyl/" style="margin-top: 15px">
                         <label hidden>
                             <input name="vinyl_id" value="{{vinyl.id}}">
                         </label>
-                        <button class="btn btn-primary fs-5 border rounded border-secondary shadow me-2 py-2 px-4">
+                        <button class="btn btn-primary fs-6 border rounded border-secondary shadow me-2 py-2 px-4">
                             {% translate "Sell the LP" %}
                         </button>
-                        <a class="btn btn-light fs-5 rounded shadow me-2 py-2 px-4"
-                                href="/info_sell">{% translate "How to sell LP" %}?
-                        </a>
+                        <div style="margin-top: 10px">
+                        <a class="text mb-3" href="/info_sell">{% translate "How to sell LP" %}?
+                        </a></div>
                     </form>
-                    <button onclick="vinylDelete('{{vinyl.id}}', (data)=>{console.log(data)})"
-                            class="btn btn-outline-danger fs-5 border rounded border-danger shadow me-2 py-2 px-4">
-                        {% translate "Delete" %}
-                    </button>
                 </div>
             </div>
         </div>
@@ -72,20 +75,29 @@
 
     function vinylDelete(vinylId, onSuccess, onError) {
         const url = `/api/vinyls/${vinylId}`
-        fetch(url, {
-            method: 'DELETE',
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (onSuccess) {
-                    onSuccess(data)
-                }
+        if (confirm("Вы уверены, что хотите удалить эту пластинку из своей коллекции?") === true) {
+            fetch(url, {
+                method: 'DELETE',
             })
-            .catch((error) => {
-                if (onError) {
-                    onError(error)
-                }
-            });
+                .then((response) => response.json())
+                .then((data) => {
+                    if (onSuccess) {
+                        onSuccess(data)
+                    }
+                })
+                .catch((error) => {
+                    if (onError) {
+                        onError(error)
+                    }
+                })
+            .finally(redirectCollection);
+        }
+
+    }
+
+    function redirectCollection() {
+        console.log('');
+        document.location.href = '/my_collection';
     }
 </script>
 {% endblock %}

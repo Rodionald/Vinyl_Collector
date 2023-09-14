@@ -3,13 +3,41 @@
 {% load i18n %}
 <div class="col-auto d-flex flex-column" style="max-width: 900px">
     <h2 class="text fw-bold mb-3">{% translate "Join, for creating your own Collection" %}</h2>
-    <form method="post">
+    <div>
+    <form method="post" class="form-group" style="max-width: 600px;">
         {% csrf_token %}
-        <div align="center">
-            {{ form.as_p }}
+
+        {% for field in form %}
+        {% for error in field.errors %}
+
+        <h5 style="text-align: left"><span style="color: red"><li>{{ error | safe }}</li></span></h5>
+        {% endfor %}
+        {% endfor %}
+
+
+        <div style="max-width: 600px;text-align: left">
+        <span style="color: red">{{ form.error_list }}</span>
         </div>
-        <button class="btn btn-primary fs-5 border rounded border-secondary shadow me-2 py-2 px-4" type="submit">{% translate "Sign up" %}
+        <div style="max-width: 600px;text-align: left">
+            <div style="margin-top: 10px">
+            <h6><span style="color: red">*</span> {{ form.username.label }}</h6>
+            <input style="border-radius: 6px;" {{ form.username }}<h6 style="margin-top: 5px">{{ form.username.help_text }}</h6></div>
+            <div style="margin-top: 10px">
+            <h6><span style="color: red">*</span> {{ form.email.label }}</h6>
+            <input style="border-radius: 6px;" {{ form.email }}<h6 style="margin-top: 5px">{{ form.email.help_text }}</h6></div>
+            <div style="margin-top: 10px">
+            <h6><span style="color: red">*</span> {{ form.password1.label }}</h6>
+            <input style="border-radius: 6px;" {{ form.password1 }}<h6 style="margin-top: 5px">{{ form.password1.help_text }}</h6></div>
+            <div style="margin-top: 10px">
+                <h6><span style="color: red">*</span> {{ form.password2.label }}</h6>
+            <input style="border-radius: 6px;" {{ form.password2 }}
+            <h6 style="margin-top: 5px">{{ form.password2.help_text }}</h6></div>
+            <div style="margin-top: 15px" align="center">
+                {{ form.recaptcha }}</div>
+        </div>
+        <button class="btn btn-primary fs-5 border rounded border-secondary shadow me-2 py-2 px-4" type="submit" style="margin-top: 15px">{% translate "Sign up" %}
         </button>
     </form>
+        </div>
 </div>
 {% endblock %}
