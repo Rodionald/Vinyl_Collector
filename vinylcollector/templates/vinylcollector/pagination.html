@@ -1,9 +1,9 @@
 {% load i18n %}
 <div class="pagination-sm" style="height: 30px;justify-content: center;margin-top: 30px">
     {% if page.has_previous %}
-    <a href="?page={{ page.previous_page_number }}" class="btn btn-light rounded shadow"><</a>
+    <a href="?page={{ page.previous_page_number }}" class="btn btn-light rounded shadow me-2"><</a>
     {% endif %}
-    <b>{{ page.number }} {% translate "of" %} {{ page.paginator.num_pages }} </b>
+    <b class="me-2">{{ page.number }} {% translate "of" %} {{ page.paginator.num_pages }} </b>
     {% if page.has_next %}
     <a href="?page={{ page.next_page_number }}" class="btn btn-light rounded shadow">></a>
     {% endif %}
