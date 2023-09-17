@@ -1,7 +1,7 @@
 import requests
 import re
 import json
-from core.settings.base import IMG_LP_NO_URL
+from core.settings.base import IMG_LP_URL
 
 '''Get the id of LP you have.
 NOTICE! For Russian LP, vendor code types in Russian language!!!
@@ -142,7 +142,7 @@ class Vinyl_Lp:
             response = requests.get(url, headers=headers).text
             image_url = re.findall(r'id="release_schema".+?"image":"(.+?)"', response)[0]
         except IndexError:
-            image_url = IMG_LP_NO_URL
+            image_url = IMG_LP_URL
         return image_url
 
     @property

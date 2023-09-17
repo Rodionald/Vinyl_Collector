@@ -1,11 +1,12 @@
 {% extends 'vinylcollector/base_template.html' %}
 {% block content %}
+{% load static %}
 {% load i18n %}
 {% if context.release == 'not specified' %}
 <div class="col d-flex flex-column" style="margin-top: 30px; max-width: 450px" align="center">
     <img class="border-info rounded fit-cover"
          style="max-width:500px;max-height:500px;min-width:330px;min-height:330px;"
-         src="{{context.image_url}}" alt="{{context.album}}">
+         src="{% static 'assets/img/no_lp-min.png' %}" alt="{{context.album}}">
     <h3>{% translate "The info about this LP is not found" %}</h3>
     <div align="center">
         <button class="btn btn-light fs-5 rounded shadow me-2 py-2 px-4"
