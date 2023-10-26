@@ -24,7 +24,7 @@ class DiscogsSite:
                               'Chrome/107.0.0.0 Safari/537.36 ',
             }
             response = requests.get(url, headers=headers).text
-            release = re.findall(r'<a.+?href="/release/(.+?)-.+?"', response)[1]
+            release = re.findall(r'.+?data-id="r(.+?)"\n.+?', response)[0]
         except IndexError:
             release = 'Wrong vendor code'
         return release
