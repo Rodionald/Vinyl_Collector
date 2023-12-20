@@ -32,6 +32,8 @@ TG_TOKEN = env('TG_TOKEN')
 TG_CHAT_ID = env('TG_CHAT_ID')
 IMG_LP_URL = env('IMG_LP_URL')
 IMG_LP_NO_URL = env('IMG_LP_NO_URL')
+DC_KEY = env('DC_KEY')
+DC_PASS = env('DC_PASS')
 
 ALLOWED_HOSTS = ['*']
 

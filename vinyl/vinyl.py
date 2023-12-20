@@ -1,7 +1,8 @@
 import requests
-import re
-import json
+
 from core.settings.base import IMG_LP_URL
+from core.settings.base import DC_KEY
+from core.settings.base import DC_PASS
 
 '''Get the id of LP you have.
 NOTICE! For Russian LP, vendor code types in Russian language!!!
@@ -16,30 +17,41 @@ class DiscogsSite:
 
     def get_release(self) -> int:
         try:
-            url = f'https://www.discogs.com/search?q={self.request}&type={self.search_type}'
+            url = f'https://api.discogs.com/database/search?q={self.request}'
             headers = {
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
                           '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
                               'Chrome/107.0.0.0 Safari/537.36 ',
+                'connection': 'keep-alive',
+                'Authorization': f"Discogs key={DC_KEY}, secret={DC_PASS}",
             }
-            response = requests.get(url, headers=headers).text
-            release = re.findall(r'.+?data-id="r(.+?)"\n.+?', response)[0]
+            response = requests.get(url, headers=headers).json()
+            release = response['results'][0]['id']
+            print(release)
         except IndexError:
             release = 'Wrong vendor code'
         return release
 
 
 class SearchingData:
-    def __init__(self, release: int | None):
-        self.release = release
+    def __init__(self, request: int):
+        self.request = request
         self.json_data = None
 
     def get_json_data(self) -> dict:
         try:
-            url = f'https://api.discogs.com/releases/{self.release}'
-            data = requests.get(url)
-            self.json_data = json.loads(data.content.decode())
+            url = f'https://api.discogs.com/releases/{self.request}'
+            headers = {
+                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
+                          '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
+                              'Chrome/107.0.0.0 Safari/537.36 ',
+                'connection': 'keep-alive',
+                'Authorization': f"Discogs key={DC_KEY}, secret={DC_PASS}",
+            }
+            data = requests.get(url, headers=headers).json()
+            self.json_data = data
         except TypeError:
             self.json_data = 'Wrong vendor code'
         return self.json_data
@@ -131,17 +143,8 @@ class Vinyl_Lp:
     @property
     def image_url(self) -> str:
         try:
-            url = f'https://www.discogs.com/release/{self.release}'
-            headers = {
-                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
-                          '*/*;q=0.8, '
-                          'application/signed-exchange;v=b3;q=0.9',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
-                              'Chrome/107.0.0.0 Safari/537.36 ',
-            }
-            response = requests.get(url, headers=headers).text
-            image_url = re.findall(r'id="release_schema".+?"image":"(.+?)"', response)[0]
-        except IndexError:
+            image_url = self.json_data['images'][0].get('uri', 'not specified')
+        except KeyError:
             image_url = IMG_LP_URL
         return image_url
 
