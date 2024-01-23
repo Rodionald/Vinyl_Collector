@@ -28,7 +28,6 @@ class DiscogsSite:
             }
             response = requests.get(url, headers=headers).json()
             release = response['results'][0]['id']
-            print(release)
         except IndexError:
             release = 'Wrong vendor code'
         return release
